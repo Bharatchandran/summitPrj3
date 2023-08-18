@@ -16,8 +16,6 @@ class Group(models.Model):
     name = models.CharField(max_length=100)
     member = models.ForeignKey(User, on_delete=models.CASCADE)
 
-
-
 class Topic(models.Model):
     group = models.ForeignKey(Group, on_delete=models.CASCADE)
     name = models.CharField(max_length=100)
