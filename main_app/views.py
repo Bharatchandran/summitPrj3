@@ -18,12 +18,12 @@ def about(request):
 class InterestList(LoginRequiredMixin, ListView):
     model = Interest
 
-class InterestDetail(LoginRequiredMixin, DetailView):
-    model = Interest
-
 class InterestCreate(LoginRequiredMixin, CreateView):
     model = Interest
     fields = ['name']
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super().form_valid(form)
 
 class InterestUpdate(LoginRequiredMixin, UpdateView):
     model = Interest
@@ -42,6 +42,9 @@ class GroupDetail(LoginRequiredMixin, DetailView):
 class GroupCreate(LoginRequiredMixin, CreateView):
     model = Group
     fields = ['name']
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super().form_valid(form)
 
 class GroupUpdate(LoginRequiredMixin, UpdateView):
     model = Group
