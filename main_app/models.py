@@ -13,6 +13,7 @@ class Interest(models.Model):
         return reverse('detail', kwargs={'interest_id': self.id})
 
 class Group(models.Model):
+    interest = models.ForeignKey(Interest, on_delete=models.CASCADE)
     name = models.CharField(max_length=100)
     member = models.ForeignKey(User, on_delete=models.CASCADE)
 

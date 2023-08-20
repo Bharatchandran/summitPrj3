@@ -1,14 +1,13 @@
-{% extends 'base.html%}
+{% extends 'base.html'%}
 {% block content%}
 
 <h1> Group List </h1>
-
-{% for group in group_list %}
-    <a href="{% url 'group_detail' group.id %}">
+{% for group in groups %}
+    <a href="{% url 'group_detail' interest_id group.id %}">
         <div class="card">
-            <span class="card-title"> {{ group.name }}</span>
-            <p> {{group.members.len}} Members</p>
+            <h1 class="card-title"> {{ group.name }}</h1>
         </div>
     </a>
+{%endfor%}
 
 {% endblock %}

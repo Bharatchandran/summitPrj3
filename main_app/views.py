@@ -33,11 +33,21 @@ class InterestDelete(LoginRequiredMixin, DeleteView):
     model = Interest
     success_url = '/interests'
 
-class GroupList(LoginRequiredMixin, ListView):
-    model = Group
+# class GroupList(LoginRequiredMixin, ListView):
+#     model = Group
+def group_list(request, interest_id):
+    groups = Group.objects.filter(interest=interest_id)
+    print(groups)
+    return render(request, 'main_app/group_list.html',{
+        'groups':groups,
+        'interest_id': interest_id
+    })
 
 class GroupDetail(LoginRequiredMixin, DetailView):
     model = Group
+
+def group_detail(request, interest_id):
+    pass
 
 class GroupCreate(LoginRequiredMixin, CreateView):
     model = Group
