@@ -1,0 +1,17 @@
+{% extends 'base.html'%}
+{% block content%}
+
+<h1>{{group.name}} Details</h1>
+
+
+    <div class="card">
+        <div class="card-content">
+            <span class="card-title">{{ group.name }}</span>
+        </div>
+        <div class="card-action">
+            <a href="{% url 'group_update' group.id %}">Edit</a>
+            <a href="{% url 'group_delete' group.id %}">Delete</a>
+        </div>
+    </div>
+
+{% endblock %}
