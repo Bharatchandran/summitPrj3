@@ -4,7 +4,7 @@
 <h1>Interest List</h1>
 
 {% for interest in interest_list %}
-  <a href="{% url 'interest_list' interest.id %}">
+  <a href="{% url 'group_index' interest.id %}">
     <div class="card">
         <div class="card-content">
             <span class="card-title">{{ interest.name }}</span>
