@@ -6,7 +6,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import Post, Interest, Topic, Group
-
+from .forms import GroupForm
 
 # Create your views here.
 def home(request):
@@ -49,12 +49,32 @@ class GroupDetail(LoginRequiredMixin, DetailView):
 def group_detail(request, interest_id):
     pass
 
-class GroupCreate(LoginRequiredMixin, CreateView):
-    model = Group
-    fields = ['name']
-    def form_valid(self, form):
-        form.instance.user = self.request.user
-        return super().form_valid(form)
+# class GroupCreate(LoginRequiredMixin, CreateView):
+#     model = Group
+#     fields = ['name']
+#     def form_valid(self, form):
+#         form.instance.user = self.request.user
+#         return super().form_valid(form)
+
+def group_new(request, interest_id):
+    group_form = GroupForm()
+    
+    return render(request, 'main_app/group_new.html',{
+        'group_form': group_form,
+        'interest_id':interest_id
+        })
+
+def group_create(request, interest_id):
+    form = GroupForm(request.POST)
+
+    if form.is_valid():
+
+        new_group = form.save(commit=False)
+        new_group.interest_id = interest_id
+        new_group.member_id = interest_id
+
+        new_group.save()
+    return redirect('group_list', interest_id= interest_id)
 
 class GroupUpdate(LoginRequiredMixin, UpdateView):
     model = Group

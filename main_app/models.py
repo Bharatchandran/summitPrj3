@@ -9,13 +9,14 @@ class Interest(models.Model):
     name = models.CharField(max_length=100)
     member = models.ManyToManyField(User)
 
-    def get_abosolute_url(self):
-        return reverse('detail', kwargs={'interest_id': self.id})
+    
 
 class Group(models.Model):
     interest = models.ForeignKey(Interest, on_delete=models.CASCADE)
     name = models.CharField(max_length=100)
     member = models.ForeignKey(User, on_delete=models.CASCADE)
+    def get_absolute_url(self):
+        return reverse('group_list', kwargs={'interest_id': self.id})
 
 class Topic(models.Model):
     group = models.ForeignKey(Group, on_delete=models.CASCADE)
