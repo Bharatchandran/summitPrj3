@@ -8,6 +8,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import Post, Interest, Topic, Group
 from .forms import GroupForm, TopicForm, PostForm
 from datetime import datetime
+from django.urls import reverse_lazy
 # Create your views here.
 
 
@@ -119,9 +120,24 @@ class TopicUpdate(LoginRequiredMixin, UpdateView):
     fields = ['name']
 
 
+# class TopicDelete(LoginRequiredMixin, DeleteView):
+#     model = Topic
+#     # success_url = 'group_detail'
+#     # success_url = '/interests'
+#     group_id = model.group_id
+#     success_url = reverse_lazy('group_detail', kwargs = {'group_id':group_id})
+
 class TopicDelete(LoginRequiredMixin, DeleteView):
     model = Topic
-    success_url = 'group_detail'
+    # success_url = 'group_detail'
+    # success_url = '/interests'
+    group_id = model.group_id
+
+    def get_success_url(self):
+        topic = self.get_object()
+        group_id = topic.group_id
+        success_url = reverse_lazy('group_detail', kwargs = {'group_id':group_id})
+        return success_url
 
 def post_create(request,group_id, topic_id):
     form = PostForm(request.POST)
