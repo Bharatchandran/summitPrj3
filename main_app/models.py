@@ -18,7 +18,6 @@ class Group(models.Model):
     interest = models.ForeignKey(Interest, on_delete=models.CASCADE)
     name = models.CharField(max_length=100)
     # member = models.ForeignKey(User, on_delete=models.CASCADE)
-
     def get_absolute_url(self):
         group = Group.objects.get(id=self.id)
         return reverse('group_list', kwargs={'interest_id': group.interest_id})

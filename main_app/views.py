@@ -53,11 +53,11 @@ def group_list(request, interest_id):
 
 
 def group_detail(request, group_id):
-    group = Group.objects.filter(id=group_id)
+    group = Group.objects.get(id=group_id)
     topic_form = TopicForm()
     # topic = Topic.objects.get()
     topic = group.topic_set.all()
-    print('>>>>>>>>', group.topic.id)
+   
 
     return render(request, 'main_app/group_detail.html', {
         'group': group,
