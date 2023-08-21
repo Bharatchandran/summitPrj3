@@ -6,8 +6,8 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import Post, Interest, Topic, Group
-from .forms import GroupForm
-
+from .forms import GroupForm, TopicForm
+from datetime import datetime
 # Create your views here.
 
 
@@ -27,6 +27,7 @@ class InterestCreate(LoginRequiredMixin, CreateView):
     model = Interest
     fields = ['name']
     # form.owner = self.request.user
+
     def form_valid(self, form):
         form.instance.owner = self.request.user
         return super().form_valid(form)
@@ -50,10 +51,18 @@ def group_list(request, interest_id):
         'groups': groups
     })
 
+
 def group_detail(request, group_id):
-    group = Group.objects.get(id = group_id)
+    group = Group.objects.filter(id=group_id)
+    topic_form = TopicForm()
+    # topic = Topic.objects.get()
+    topic = group.topic_set.all()
+    print('>>>>>>>>', group.topic.id)
+
     return render(request, 'main_app/group_detail.html', {
-        'group': group
+        'group': group,
+        'topic_form': topic_form,
+        'topic': topic
     })
 
 # class GroupCreate(LoginRequiredMixin, CreateView):
@@ -62,6 +71,7 @@ def group_detail(request, group_id):
 #     def form_valid(self, form):
 #         form.instance.user = self.request.user
 #         return super().form_valid(form)
+
 
 def group_new(request, interest_id):
     group_form = GroupForm()
@@ -74,7 +84,6 @@ def group_new(request, interest_id):
 
 def group_create(request, interest_id):
     form = GroupForm(request.POST)
-
 
     if form.is_valid():
         new_group = form.save(commit=False)
@@ -91,6 +100,25 @@ class GroupUpdate(LoginRequiredMixin, UpdateView):
 class GroupDelete(LoginRequiredMixin, DeleteView):
     model = Group
     success_url = '/interests'
+
+
+def topic_create(request, group_id):
+    form = TopicForm(request.POST)
+    if form.is_valid():
+        new_topic = form.save(commit=False)
+        new_topic.group_id = group_id
+        new_topic.save()
+    return redirect('group_detail', group_id=group_id)
+
+
+class TopicUpdate(LoginRequiredMixin, UpdateView):
+    model = Topic
+    fields = ['name']
+
+
+class TopicDelete(LoginRequiredMixin, DeleteView):
+    model = Topic
+    success_url = 'group_detail'
 
 
 def signup(request):
