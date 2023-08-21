@@ -6,7 +6,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import Post, Interest, Topic, Group
-from .forms import GroupForm, TopicForm
+from .forms import GroupForm, TopicForm, PostForm
 from datetime import datetime
 # Create your views here.
 
@@ -55,14 +55,17 @@ def group_list(request, interest_id):
 def group_detail(request, group_id):
     group = Group.objects.get(id=group_id)
     topic_form = TopicForm()
+    post_form = PostForm()
     # topic = Topic.objects.get()
     topics = group.topic_set.all()
+    
    
 
     return render(request, 'main_app/group_detail.html', {
         'group': group,
         'topic_form': topic_form,
-        'topics': topics
+        'topics': topics,
+        'post_form': post_form
     })
 
 # class GroupCreate(LoginRequiredMixin, CreateView):
@@ -120,6 +123,22 @@ class TopicDelete(LoginRequiredMixin, DeleteView):
     model = Topic
     success_url = 'group_detail'
 
+def post_create(request,group_id, topic_id):
+    form = PostForm(request.POST)
+    if form.is_valid():
+        new_post = form.save(commit=False)
+        new_post.topic_id = topic_id
+        # new_post.user_id = request.user.id
+        new_post.save()
+    return redirect('group_detail',group_id=group_id)
+
+class PostUpdate(LoginRequiredMixin, UpdateView):
+    model = Post
+    field = ['content']
+
+class PostDelete(LoginRequiredMixin, DeleteView):
+    model = Post
+    success_url = 'group_detail'
 
 def signup(request):
     error_message = ''

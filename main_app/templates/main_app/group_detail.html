@@ -22,6 +22,20 @@
     <div>
         {% for topic in topics %}
             <h2> {{ topic.name }} </h2>
+            <div>
+                <form action="{% url 'post_create' group.id topic.id %}" method="POST">
+                    {% csrf_token %}
+                    {{ post_form.as_p }}
+                    <input type="submit" value="Submit" class="btn">
+                </form>
+            </div>
+            <div>
+                {% for post in topic.post_set.all %}
+                    <p>{{post.content}}</p>
+                    <a href="{% url 'post_update' post.id %}">Edit</a>
+                    <a href="{% url 'post_delete' post.id %}">Delete</a>
+                {%endfor%}
+            </div>
             <a href="{% url 'topic_update' topic.id %}">Edit</a>
             <a href="{% url 'topic_delete' topic.id %}">Delete</a>
             <h1>{{topic.createdAt}}</h1>
