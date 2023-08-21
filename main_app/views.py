@@ -41,25 +41,20 @@ class InterestDelete(LoginRequiredMixin, DeleteView):
     model = Interest
     success_url = '/interests'
 
-# class GroupList(LoginRequiredMixin, ListView):
-#     model = Group
-
 
 def group_list(request, interest_id):
     groups = Group.objects.filter(interest=interest_id)
     print(groups)
     return render(request, 'main_app/group_list.html', {
-        'groups': groups,
-        'interest_id': interest_id
+        'interest_id': interest_id,
+        'groups': groups
     })
 
-
-class GroupDetail(LoginRequiredMixin, DetailView):
-    model = Group
-
-
-def group_detail(request, interest_id):
-    pass
+def group_detail(request, group_id):
+    group = Group.objects.get(id = group_id)
+    return render(request, 'main_app/group_detail.html', {
+        'group': group
+    })
 
 # class GroupCreate(LoginRequiredMixin, CreateView):
 #     model = Group
@@ -84,8 +79,6 @@ def group_create(request, interest_id):
     if form.is_valid():
         new_group = form.save(commit=False)
         new_group.interest_id = interest_id
-        new_group.member_id = interest_id
-
         new_group.save()
     return redirect('group_list', interest_id=interest_id)
 
@@ -97,7 +90,7 @@ class GroupUpdate(LoginRequiredMixin, UpdateView):
 
 class GroupDelete(LoginRequiredMixin, DeleteView):
     model = Group
-    success_url = '/groups'
+    success_url = '/interests'
 
 
 def signup(request):

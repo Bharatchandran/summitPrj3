@@ -15,10 +15,10 @@ class Interest(models.Model):
 class Group(models.Model):
     interest = models.ForeignKey(Interest, on_delete=models.CASCADE)
     name = models.CharField(max_length=100)
-    member = models.ForeignKey(User, on_delete=models.CASCADE)
-
+    # member = models.ForeignKey(User, on_delete=models.CASCADE)
     def get_absolute_url(self):
-        return reverse('group_list', kwargs={'interest_id': self.id})
+        group = Group.objects.get(id = self.id)
+        return reverse('group_list', kwargs={'interest_id': group.interest_id})
 
 
 class Topic(models.Model):
