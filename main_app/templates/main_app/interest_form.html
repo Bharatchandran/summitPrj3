@@ -4,11 +4,11 @@
     {% if object%}
         <h1>Edit {{object.name}}</h1>
     {% else %}
-        <h1>Create Group</h1>
+        <h1>Create Interest</h1>
     {% endif %}
 
     <form action="" method="POST">
-        {csrf_token}
+        {% csrf_token %}
         <table>
         {{form.as_table}}
         </table>

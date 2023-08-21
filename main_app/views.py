@@ -9,25 +9,34 @@ from .models import Post, Interest, Topic, Group
 from .forms import GroupForm
 
 # Create your views here.
+
+
 def home(request):
     return render(request, 'home.html')
+
 
 def about(request):
     return render(request, 'about.html')
 
+
 class InterestList(LoginRequiredMixin, ListView):
     model = Interest
+
 
 class InterestCreate(LoginRequiredMixin, CreateView):
     model = Interest
     fields = ['name']
+    # form.owner = self.request.user
+
     def form_valid(self, form):
-        form.instance.user = self.request.user
+        form.instance.owner = self.request.user
         return super().form_valid(form)
+
 
 class InterestUpdate(LoginRequiredMixin, UpdateView):
     model = Interest
     fields = ['name']
+
 
 class InterestDelete(LoginRequiredMixin, DeleteView):
     model = Interest
@@ -35,16 +44,20 @@ class InterestDelete(LoginRequiredMixin, DeleteView):
 
 # class GroupList(LoginRequiredMixin, ListView):
 #     model = Group
+
+
 def group_list(request, interest_id):
     groups = Group.objects.filter(interest=interest_id)
     print(groups)
-    return render(request, 'main_app/group_list.html',{
-        'groups':groups,
+    return render(request, 'main_app/group_list.html', {
+        'groups': groups,
         'interest_id': interest_id
     })
 
+
 class GroupDetail(LoginRequiredMixin, DetailView):
     model = Group
+
 
 def group_detail(request, interest_id):
     pass
@@ -58,31 +71,35 @@ def group_detail(request, interest_id):
 
 def group_new(request, interest_id):
     group_form = GroupForm()
-    
-    return render(request, 'main_app/group_new.html',{
+
+    return render(request, 'main_app/group_new.html', {
         'group_form': group_form,
-        'interest_id':interest_id
-        })
+        'interest_id': interest_id
+    })
+
 
 def group_create(request, interest_id):
     form = GroupForm(request.POST)
 
-    if form.is_valid():
 
+    if form.is_valid():
         new_group = form.save(commit=False)
         new_group.interest_id = interest_id
         new_group.member_id = interest_id
 
         new_group.save()
-    return redirect('group_list', interest_id= interest_id)
+    return redirect('group_list', interest_id=interest_id)
+
 
 class GroupUpdate(LoginRequiredMixin, UpdateView):
     model = Group
     fields = ['name']
 
+
 class GroupDelete(LoginRequiredMixin, DeleteView):
     model = Group
     success_url = '/groups'
+
 
 def signup(request):
     error_message = ''

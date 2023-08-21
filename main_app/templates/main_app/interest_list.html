@@ -2,6 +2,7 @@
 {% block content %}
 
 <h1>Interest List</h1>
+<a href="{% url 'interest_create' %}">Create an Interest</a>
 
 {% for interest in interest_list %}
 <h1>{{interest.id}}</h1>
