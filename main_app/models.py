@@ -4,6 +4,7 @@ from django.urls import reverse
 from datetime import datetime
 from django.utils import timezone
 from datetime import date
+import datetime
 # Create your models here.
 
 
@@ -27,10 +28,10 @@ class Group(models.Model):
 class Topic(models.Model):
     group = models.ForeignKey(Group, on_delete=models.CASCADE)
     name = models.CharField('Topic', max_length=100)
-    date = models.DateField(default=timezone.now())
+    createdAt = models.DateTimeField(auto_now_add=True)
 
-    # class Meta:
-    #     ordering = ['-date']
+    class Meta:
+        ordering = ['-createdAt']
 
 
 class Post(models.Model):

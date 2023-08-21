@@ -56,13 +56,13 @@ def group_detail(request, group_id):
     group = Group.objects.get(id=group_id)
     topic_form = TopicForm()
     # topic = Topic.objects.get()
-    topic = group.topic_set.all()
+    topics = group.topic_set.all()
    
 
     return render(request, 'main_app/group_detail.html', {
         'group': group,
         'topic_form': topic_form,
-        'topic': topic
+        'topics': topics
     })
 
 # class GroupCreate(LoginRequiredMixin, CreateView):

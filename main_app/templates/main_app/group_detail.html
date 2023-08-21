@@ -20,10 +20,11 @@
         </form>
     </div>
     <div>
-        {% for topic in group.topic_set.all %}
+        {% for topic in topics %}
             <h2> {{ topic.name }} </h2>
             <a href="{% url 'topic_update' topic.id %}">Edit</a>
             <a href="{% url 'topic_delete' topic.id %}">Delete</a>
+            <h1>{{topic.createdAt}}</h1>
         {% endfor %}
     </div>
 
