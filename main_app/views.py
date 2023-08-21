@@ -27,7 +27,6 @@ class InterestCreate(LoginRequiredMixin, CreateView):
     model = Interest
     fields = ['name']
     # form.owner = self.request.user
-
     def form_valid(self, form):
         form.instance.owner = self.request.user
         return super().form_valid(form)

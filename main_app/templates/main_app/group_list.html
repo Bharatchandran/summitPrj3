@@ -1,6 +1,8 @@
 {% extends 'base.html'%}
 {% block content%}
-<a href="{%url 'group_new' interest_id %}">create Group</a>
+<a href="{%url 'group_new' interest_id %}">Create Group</a>
+<a href="{%url 'interest_update' interest_id %}">Edit Interest</a>
+<a href="{%url 'interest_delete' interest_id %}">Delete Interest</a>
 <h1> Group List </h1>
 {% for group in groups %}
     <a href="{% url 'group_detail' interest_id group.id %}">
