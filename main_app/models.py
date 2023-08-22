@@ -12,6 +12,9 @@ class Interest(models.Model):
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
     name = models.CharField(max_length=100)
 
+    def __str__(self):
+        return f"{self.name}:{self.id}"
+
     def get_absolute_url(self):
         return reverse('interest_list')
 
@@ -20,6 +23,9 @@ class Group(models.Model):
     interest = models.ForeignKey(Interest, on_delete=models.CASCADE)
     name = models.CharField(max_length=100)
     # member = models.ForeignKey(User, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f"{self.name}:{self.id}"
     def get_absolute_url(self):
         group = Group.objects.get(id=self.id)
         return reverse('group_list', kwargs={'interest_id': group.interest_id})
@@ -32,6 +38,9 @@ class Topic(models.Model):
 
     class Meta:
         ordering = ['-createdAt']
+    
+    def __str__(self):
+        return f"{self.name}:{self.id}"
     
     def get_absolute_url(self):
         print(self,"-------")
@@ -72,4 +81,5 @@ class Like(models.Model):
     
 class Member(models.Model):
     user = models.ForeignKey(User,on_delete=models.CASCADE)
-    group= models.ForeignKey(Post, on_delete=models.CASCADE)
+    group= models.ForeignKey(Group, on_delete=models.CASCADE)
+    interest = models.ForeignKey(Interest, on_delete=models.CASCADE)

@@ -6,6 +6,8 @@ urlpatterns = [
 
     # INTEREST URLS
     path('interests/', views.InterestList.as_view(), name='interest_list'),
+    # path('mygroup/', views.MygroupList.as_view(), name='mygroup_list'),
+    path('mygroup/', views.mygroup_index, name='mygroup_index'),
     path('interests/create/', views.InterestCreate.as_view(),
          name='interest_create'),
     path('interests/<int:pk>/update/',
@@ -15,19 +17,21 @@ urlpatterns = [
     # GROUP URLS
     path('interests/<int:interest_id>/groups/',
          views.group_list, name='group_list'),
+    
     path('interests/<int:interest_id>/groups/new/',
          views.group_new, name='group_new'),
     path('interests/<int:interest_id>/groups/create/',
          views.group_create, name='group_create'),
     path('interests/groups/<int:group_id>/',
          views.group_detail, name='group_detail'),
+    
     path('interests/groups/<int:pk>/update/',
          views.GroupUpdate.as_view(), name='group_update'),
     path('interests/groups/<int:pk>/delete/',
          views.GroupDelete.as_view(), name='group_delete'),
-    path('interests/groups/<int:group_id>/add_member/',
+    path('interests/<int:interest_id>/groups/<int:group_id>/add_member/',
          views.add_member_to_group, name='add_member_to_group'),
-
+    
     # TOPIC URLS
     path('interests/groups/<int:group_id>/topics',
          views.topic_create, name='topic_create'),

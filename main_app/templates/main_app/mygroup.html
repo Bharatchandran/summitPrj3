@@ -1,0 +1,36 @@
+{% extends 'base.html'%}
+{% block content%}
+<h1 class="text-5xl font-bold text-center text-black m-10">Group List</h1>
+
+<!-- Perhap change this to dynamic dispay interest name for the title -->
+
+<div class="space-x-1 ">
+</div>
+<div class="'flex flex-row space-x-4">
+    {% if member  %}
+        {% for el in member %}
+        <h1>{{ el.group.id }}</h1>
+        <a href="{% url 'group_detail' el.group.id %}">
+
+            <div class="card w-96 glass flex-grow" ">
+                <div class="card-body items-center text-center mb-3">
+                    <span class="card-title">{{ el.group.name }}</span>
+                </div>
+                
+            </div>
+            <div class="space-x-1 ">
+                <a class="btn btn-neutral mt-3" href="{%url 'group_update' el.interest.id %}">Edit </a>
+                <a class="btn btn-neutral" href="{%url 'group_delete' el.interest.id %}">Delete </a>
+            </div>
+            <div class="space-x-1 ">
+            </div>
+        </a>
+        {% endfor %}
+    {% else %}
+        <h4 class="text-center text-4xl mb-8 dark:text-black">The Group List is empty</h4>
+        <h3 class="text-center text-3xl mb-8 dark:text-black">Create an New Group Below </h3>
+    {% endif %}
+    <div class="flex justify-center mt-4">
+    </div>
+</div>
+{% endblock %}

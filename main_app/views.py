@@ -101,7 +101,18 @@ def group_create(request, interest_id):
         new_group.save()
     return redirect('group_list', interest_id=interest_id)
 
-
+# class MygroupList(LoginRequiredMixin, ListView):
+#     model = Group
+#     def get_query_ser(self):
+#         queryset = super().get_queryset()
+#         queryset = queryset.filter(user=self.request.user)
+#         return queryset
+    
+def mygroup_index(request):
+    member = Member.objects.all().filter(user_id=request.user.id)
+    return render(request,'main_app/mygroup.html',{
+        'member': member
+    })
 class GroupUpdate(LoginRequiredMixin, UpdateView):
     model = Group
     fields = ['name']
@@ -222,8 +233,8 @@ class PostDelete(LoginRequiredMixin, DeleteView):
 #     # return redirect('detail', group_id=group_id)
 #     return
 
-def add_member_to_group(request,group_id):
-    Member.objects.create(user_id=request.user.id, group_id=group_id)
+def add_member_to_group(request,interest_id,group_id):
+    Member.objects.create(user_id=request.user.id, group_id=group_id, interest_id=interest_id)
     return redirect('group_detail', group_id=group_id)
 
 def create_like(request, group_id, post_id):

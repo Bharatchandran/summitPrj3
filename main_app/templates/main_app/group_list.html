@@ -9,7 +9,7 @@
     <a href="{% url 'group_detail' group.id %}">
         <div class="card">
             <h1 class="card-title"> {{ group.name }}</h1>
-            <form action="{%url 'add_member_to_group' group.id%}" method="POST">
+            <form action="{%url 'add_member_to_group' interest_id  group.id%}" method="POST">
                 {%csrf_token%}
                 <button type="submit">Join</button>
             </form>
