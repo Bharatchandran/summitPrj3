@@ -44,5 +44,6 @@ urlpatterns = [
      path('interest/groups/topic/post/<int:pk>/update/', views.PostUpdate.as_view(), name='post_update'),
      path('interest/groups/topic/post/<int:pk>/delete', views.PostDelete.as_view(), name='post_delete'),
     #  path('interest/groups/topic/post/<int:post_id>/add_photo',views.add_photo, name='add_photo'),
-    path('accounts/signup/', views.signup, name='signup')
+    path('group/<int:group_id>/post/<int:post_id>/like', views.create_like, name="create_like"),
+    path('accounts/signup/', views.signup, name='signup'),
 ]

@@ -40,7 +40,11 @@
                     <h1>{{post.user}}</h1>
 
                    
-                    
+                    <form  action="{% url 'create_like' group.id post.id%}" method="POST">
+                        {%csrf_token%}
+                        <button type="submit">like</button>
+                    </form>
+                    <p>Like: {{post.like_set.count}}</p>
 
                     <a href="{% url 'post_update' post.id %}">Edit</a>
                     <a href="{% url 'post_delete' post.id %}">Delete</a>

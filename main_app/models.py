@@ -55,9 +55,10 @@ class Post(models.Model):
         group = post.topic.group_id
         return reverse('group_detail', kwargs={'group_id': group})
     
+    
 # class PostPhoto(models.Model):
 #     url = models.CharField(max_length=200)
 #     post = models.ForeignKey(Post, on_delete=models.CASCADE)
 
-# class Like(models.Model):
-#     post = models.ForeignKey(Post)
+class Like(models.Model):
+    post = models.ForeignKey(Post, on_delete=models.CASCADE)
