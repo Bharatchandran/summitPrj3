@@ -7,10 +7,9 @@
     <title>Summit</title>
     <link href="https://cdn.jsdelivr.net/npm/daisyui@3.5.1/dist/full.css" rel="stylesheet" type="text/css" />
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
 </head>
-<body
-    <header>
+<body class="h-[100vh]">
+    <header >
         <div class="navbar bg-neutral text-neutral-content">
             <div class="navbar-start">
                 <div class="dropdown">
@@ -48,7 +47,7 @@
             </div>
         </div>
     </header>
-    <main class="">
+    <main class="h-[80vh]">
         {% block content%}
         {% endblock %}
     </main>
