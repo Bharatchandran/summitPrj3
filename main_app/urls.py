@@ -25,6 +25,8 @@ urlpatterns = [
          views.GroupUpdate.as_view(), name='group_update'),
     path('interests/groups/<int:pk>/delete/',
          views.GroupDelete.as_view(), name='group_delete'),
+    path('interests/groups/<int:group_id>/add_member/',
+         views.add_member_to_group, name='add_member_to_group'),
 
     # TOPIC URLS
     path('interests/groups/<int:group_id>/topics',

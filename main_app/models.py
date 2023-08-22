@@ -70,3 +70,6 @@ class Like(models.Model):
     post = models.ForeignKey(Post, on_delete=models.CASCADE)
     user = models.ForeignKey(User,on_delete=models.CASCADE)
     
+class Member(models.Model):
+    user = models.ForeignKey(User,on_delete=models.CASCADE)
+    group= models.ForeignKey(Post, on_delete=models.CASCADE)

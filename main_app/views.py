@@ -8,7 +8,7 @@ from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
-from .models import Post, Interest, Topic, Group, Like
+from .models import Post, Interest, Topic, Group, Like, Member
 from .forms import GroupForm, TopicForm, PostForm
 from datetime import datetime
 from django.urls import reverse_lazy
@@ -221,6 +221,10 @@ class PostDelete(LoginRequiredMixin, DeleteView):
 #             print(e)
 #     # return redirect('detail', group_id=group_id)
 #     return
+
+def add_member_to_group(request,group_id):
+    Member.objects.create(user_id=request.user.id, group_id=group_id)
+    return redirect('group_detail', group_id=group_id)
 
 def create_like(request, group_id, post_id):
     post = Post.objects.get(id=post_id)
