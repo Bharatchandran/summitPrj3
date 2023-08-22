@@ -6,14 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Summit</title>
     <link href="https://cdn.jsdelivr.net/npm/daisyui@3.5.1/dist/full.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body>
     <header>
         <div class="navbar bg-neutral text-neutral-content">
-            <div class="navbar-start">
+            <div class="navbar-start flex items-center space-x-4">
                 <div class="dropdown  ">
-                    <label tabindex="0" class="btn btn-ghost lg:hidden" value='here!'> 
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
                     </label>
                     <ul tabindex="0" class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 text-black rounded-box w-52">
@@ -32,7 +32,7 @@
                 <a class="btn btn-ghost normal-case text-xl" href="{%url 'home'%}">SUMMIT</a>
             </div>
             <div class="navbar-center hidden lg:flex">
-                <ul class="menu menu-horizontal px-1">
+                <ul class="menu menu-horizontal px-5">
                     <li><a href="">About</a></li>
                     {% if user.is_authenticated %}
                         <li><a href="{%url 'interest_list'%}">Interests</a></li>
@@ -40,7 +40,6 @@
                         <li><a href="">Profile</a></li>  
                         <li><a href="{%url 'logout' %}">Log out</a></li>
                     {% else %}
-                        <li><a href="">Sign Up</a></li>
                         <li><a href="{%url 'signup' %}">Sign Up</a></li>
                         <li><a href="{%url 'login' %}">Log In</a></li>
                     {% endif%} 
@@ -48,7 +47,7 @@
             </div>
         </div>
     </header>
-    <main class="md:container md:mx-auto"">
+    <main class="w-screen md:container md:mx-auto">
         {% block content%}
         {% endblock %}
     </main>

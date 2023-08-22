@@ -1,15 +1,36 @@
+
 {% extends 'base.html'%}
 {% block content%}
-<a href="{%url 'group_new' interest_id %}">Create Group</a>
-<a href="{%url 'interest_update' interest_id %}">Edit Interest</a>
-<a href="{%url 'interest_delete' interest_id %}">Delete Interest</a>
-<h1> Group List </h1>
-{% for group in groups %}
-    <a href="{% url 'group_detail' group.id %}">
-        <div class="card">
-            <h1 class="card-title"> {{ group.name }}</h1>
-        </div>
-    </a>
-{%endfor%}
+<h1 class="text-5xl font-bold text-center text-black m-10">Group List</h1>
+<!-- Perhap change this to dynamic dispay interest name for the title -->
 
+<div class="space-x-1 ">
+    <a class="btn btn-neutral mt-3" href="{%url 'interest_update' interest_id %}">Edit </a>
+    <a class="btn btn-neutral" href="{%url 'interest_delete' interest_id %}">Delete </a>
+</div>
+<div class="'flex flex-row space-x-4">
+    {% if groups  %}
+        {% for group in groups %}
+        <h1>{{ group.id }}</h1>
+        <a href="{% url 'group_detail' group.id %}">
+
+            <div class="card w-96 glass flex-grow" ">
+                <div class="card-body items-center text-center mb-3">
+                    <span class="card-title">{{ group.name }}</span>
+                </div>
+            </div>
+            <div class="space-x-1 ">
+                <a class="btn btn-neutral mt-3" href="{%url 'group_update' interest_id %}">Edit </a>
+                <a class="btn btn-neutral" href="{%url 'group_delete' interest_id %}">Delete </a>
+            </div>
+        </a>
+        {% endfor %}
+    {% else %}
+        <h4 class="text-center text-4xl mb-8 dark:text-black">The Group List is empty</h4>
+        <h3 class="text-center text-3xl mb-8 dark:text-black">Create an New Group Below </h3>
+    {% endif %}
+    <div class="flex justify-center mt-4">
+        <a class="btn btn-neutral mb-6" href="{%url 'group_new' interest_id %}">Create Group</a>
+    </div>
+</div>
 {% endblock %}
