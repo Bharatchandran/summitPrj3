@@ -63,6 +63,11 @@ def group_detail(request, group_id):
     # topic = Topic.objects.get()
     topics = group.topic_set.all()
 
+    def user_like_post(self):
+        print(self.user.id)
+        # print(self.like_set.get(user_id = self.user.id),"===")
+        return self.like_set.get(user_id = self.user.id)
+
     return render(request, 'main_app/group_detail.html', {
         'group': group,
         'topic_form': topic_form,
@@ -218,7 +223,11 @@ class PostDelete(LoginRequiredMixin, DeleteView):
 #     return
 
 def create_like(request, group_id, post_id):
-    Like.objects.create(post_id=post_id, user_id= request.user.id )
+    post = Post.objects.get(id=post_id)
+    like = post.like_set.filter(user=request.user)
+    print(like)
+    if len(like) == 0:
+        Like.objects.create(post_id=post_id, user_id= request.user.id )
     return redirect('group_detail', group_id=group_id)
 
 
