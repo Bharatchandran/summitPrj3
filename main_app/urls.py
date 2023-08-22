@@ -38,12 +38,11 @@ urlpatterns = [
     path('interest/groups/topic/<int:pk>/delete/',
          views.TopicDelete.as_view(), name='topic_delete'),
 
-    # POST URLS
-    path('interest/groups/<int:group_id>/topic/<int:topic_id>/create',
-         views.post_create, name='post_create'),
-    path('interest/groups/topic/post/<int:pk>/update/',
-         views.PostUpdate.as_view(), name='post_update'),
-    path('interest/groups/topic/post/<int:pk>/delete',
-         views.PostDelete.as_view(), name='post_delete'),
-    path('accounts/signup/', views.signup, name='signup'),
+
+     # POST URLS
+     path('interest/groups/<int:group_id>/topic/<int:topic_id>/create', views.post_create, name='post_create'),
+     path('interest/groups/topic/post/<int:pk>/update/', views.PostUpdate.as_view(), name='post_update'),
+     path('interest/groups/topic/post/<int:pk>/delete', views.PostDelete.as_view(), name='post_delete'),
+    #  path('interest/groups/topic/post/<int:post_id>/add_photo',views.add_photo, name='add_photo'),
+    path('accounts/signup/', views.signup, name='signup')
 ]

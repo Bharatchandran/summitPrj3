@@ -41,7 +41,7 @@ class Topic(models.Model):
 
 
 class Post(models.Model):
-    # user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     topic = models.ForeignKey(Topic, on_delete=models.CASCADE)
     content = models.TextField(max_length=1000)
     image_url = models.CharField(max_length=200)
@@ -58,3 +58,6 @@ class Post(models.Model):
 # class PostPhoto(models.Model):
 #     url = models.CharField(max_length=200)
 #     post = models.ForeignKey(Post, on_delete=models.CASCADE)
+
+# class Like(models.Model):
+#     post = models.ForeignKey(Post)

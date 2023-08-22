@@ -156,6 +156,7 @@ def post_create(request, group_id, topic_id):
     if form.is_valid():
         new_post = form.save(commit=False)
         new_post.topic_id = topic_id
+        new_post.user_id = request.user.id
         # new_post.user_id = request.user.id
         photo_file = request.FILES.get('photo-file', None)
         if photo_file:
