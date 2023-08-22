@@ -1,3 +1,6 @@
+import uuid
+import boto3
+import os
 from django.shortcuts import render, redirect
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic import ListView, DetailView
@@ -60,13 +63,14 @@ def group_detail(request, group_id):
     # topic = Topic.objects.get()
     topics = group.topic_set.all()
     
+    
    
 
     return render(request, 'main_app/group_detail.html', {
         'group': group,
         'topic_form': topic_form,
         'topics': topics,
-        'post_form': post_form
+        'post_form': post_form,
     })
 
 # class GroupCreate(LoginRequiredMixin, CreateView):
@@ -139,12 +143,37 @@ class TopicDelete(LoginRequiredMixin, DeleteView):
         success_url = reverse_lazy('group_detail', kwargs = {'group_id':group_id})
         return success_url
 
+# def post_create(request,group_id, topic_id):
+#     form = PostForm(request.POST)
+#     if form.is_valid():
+#         new_post = form.save(commit=False)
+#         new_post.topic_id = topic_id
+#         # new_post.user_id = request.user.id
+#         new_post.save()
+#     return redirect('group_detail',group_id=group_id)
+
 def post_create(request,group_id, topic_id):
     form = PostForm(request.POST)
     if form.is_valid():
         new_post = form.save(commit=False)
         new_post.topic_id = topic_id
         # new_post.user_id = request.user.id
+        photo_file = request.FILES.get('photo-file', None)
+        if photo_file:
+            s3 = boto3.client('s3')
+            # need a unique "key" for S3 / needs image file extension too
+            key = uuid.uuid4().hex[:6] + photo_file.name[photo_file.name.rfind('.'):]
+            # just in case something goes wrong
+            try:
+                bucket = os.environ['S3_BUCKET']
+                s3.upload_fileobj(photo_file, bucket, key)
+                # build the full url string
+                url = f"{os.environ['S3_BASE_URL']}{bucket}/{key}"
+                # we can assign to cat_id or cat (if you have a cat object)
+                new_post.image_url = url
+            except Exception as e:
+                print('An error occurred uploading file to S3')
+                print(e)
         new_post.save()
     return redirect('group_detail',group_id=group_id)
 
@@ -159,6 +188,29 @@ class PostDelete(LoginRequiredMixin, DeleteView):
         group_id = post.topic.group_id
         success_url = reverse_lazy('group_detail', kwargs = {'group_id':group_id})
         return success_url
+
+# def add_photo(request, post_id):
+#     # photo-file will be the "name" attribute on the <input type="file">
+#     post = Post.objects.get(id = post_id)
+#     group_id = post.topic.group_id
+#     photo_file = request.FILES.get('photo-file', None)
+#     if photo_file:
+#         s3 = boto3.client('s3')
+#         # need a unique "key" for S3 / needs image file extension too
+#         key = uuid.uuid4().hex[:6] + photo_file.name[photo_file.name.rfind('.'):]
+#         # just in case something goes wrong
+#         try:
+#             bucket = os.environ['S3_BUCKET']
+#             s3.upload_fileobj(photo_file, bucket, key)
+#             # build the full url string
+#             url = f"{os.environ['S3_BASE_URL']}{bucket}/{key}"
+#             # we can assign to cat_id or cat (if you have a cat object)
+#             PostPhoto.objects.create(url=url, post_id=post_id)
+#         except Exception as e:
+#             print('An error occurred uploading file to S3')
+#             print(e)
+#     # return redirect('detail', group_id=group_id)
+#     return 
 
 def signup(request):
     error_message = ''

@@ -44,7 +44,7 @@ class Post(models.Model):
     # user = models.ForeignKey(User, on_delete=models.CASCADE)
     topic = models.ForeignKey(Topic, on_delete=models.CASCADE)
     content = models.TextField(max_length=1000)
-    image = models.CharField(max_length=200)
+    image_url = models.CharField(max_length=200)
     createdAt = models.DateTimeField(auto_now_add=True)
 
     class Meta:
@@ -54,3 +54,7 @@ class Post(models.Model):
         post = Post.objects.get(id=self.id)
         group = post.topic.group_id
         return reverse('group_detail', kwargs={'group_id': group})
+    
+# class PostPhoto(models.Model):
+#     url = models.CharField(max_length=200)
+#     post = models.ForeignKey(Post, on_delete=models.CASCADE)

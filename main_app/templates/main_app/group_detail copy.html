@@ -23,10 +23,9 @@
         {% for topic in topics %}
             <h2> {{ topic.name }} </h2>
             <div>
-                <form action="{% url 'post_create' group.id topic.id %}" enctype="multipart/form-data" method="POST" >
+                <form action="{% url 'post_create' group.id topic.id %}" method="POST">
                     {% csrf_token %}
                     {{ post_form.as_p }}
-                    <input type="file" name="photo-file">
                     <input type="submit" value="Submit" class="btn">
                 </form>
             </div>
@@ -35,11 +34,18 @@
                     <p>{{post.content}}</p>
                     </div>
                     <!-- Insert photo markup below this comment -->
-                    <img  src="{{post.image_url}}">
-                    <h1>{{post.image_url}}</h1>
-                    
+                    {% for photo in post.photo_set.all %}
+                    <img  src="{{photo.url}}">
+                    {% empty %}
+                    <div class="card-panel teal-text center-align">No Photos Uploaded</div>
+                    {% endfor %}
 
-                   
+                    <form action="{% url 'add_photo' post.id %}" enctype="multipart/form-data" method="POST" class="card-panel">
+                        {% csrf_token %}
+                        <input type="file" name="photo-file">
+                        <br><br>
+                        <button type="submit" class="btn">Upload Photo</button>
+                    </form>
                     
 
                     <a href="{% url 'post_update' post.id %}">Edit</a>
