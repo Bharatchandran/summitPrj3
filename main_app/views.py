@@ -62,9 +62,6 @@ def group_detail(request, group_id):
     post_form = PostForm()
     # topic = Topic.objects.get()
     topics = group.topic_set.all()
-    
-    
-   
 
     return render(request, 'main_app/group_detail.html', {
         'group': group,
@@ -140,7 +137,8 @@ class TopicDelete(LoginRequiredMixin, DeleteView):
     def get_success_url(self):
         topic = self.get_object()
         group_id = topic.group_id
-        success_url = reverse_lazy('group_detail', kwargs = {'group_id':group_id})
+        success_url = reverse_lazy('group_detail', kwargs={
+                                   'group_id': group_id})
         return success_url
 
 # def post_create(request,group_id, topic_id):
@@ -152,7 +150,8 @@ class TopicDelete(LoginRequiredMixin, DeleteView):
 #         new_post.save()
 #     return redirect('group_detail',group_id=group_id)
 
-def post_create(request,group_id, topic_id):
+
+def post_create(request, group_id, topic_id):
     form = PostForm(request.POST)
     if form.is_valid():
         new_post = form.save(commit=False)
@@ -162,7 +161,8 @@ def post_create(request,group_id, topic_id):
         if photo_file:
             s3 = boto3.client('s3')
             # need a unique "key" for S3 / needs image file extension too
-            key = uuid.uuid4().hex[:6] + photo_file.name[photo_file.name.rfind('.'):]
+            key = uuid.uuid4().hex[:6] + \
+                photo_file.name[photo_file.name.rfind('.'):]
             # just in case something goes wrong
             try:
                 bucket = os.environ['S3_BUCKET']
@@ -175,18 +175,22 @@ def post_create(request,group_id, topic_id):
                 print('An error occurred uploading file to S3')
                 print(e)
         new_post.save()
-    return redirect('group_detail',group_id=group_id)
+    return redirect('group_detail', group_id=group_id)
+
 
 class PostUpdate(LoginRequiredMixin, UpdateView):
     model = Post
     fields = ['content']
 
+
 class PostDelete(LoginRequiredMixin, DeleteView):
     model = Post
+
     def get_success_url(self):
         post = self.get_object()
         group_id = post.topic.group_id
-        success_url = reverse_lazy('group_detail', kwargs = {'group_id':group_id})
+        success_url = reverse_lazy('group_detail', kwargs={
+                                   'group_id': group_id})
         return success_url
 
 # def add_photo(request, post_id):
@@ -210,7 +214,8 @@ class PostDelete(LoginRequiredMixin, DeleteView):
 #             print('An error occurred uploading file to S3')
 #             print(e)
 #     # return redirect('detail', group_id=group_id)
-#     return 
+#     return
+
 
 def signup(request):
     error_message = ''
