@@ -150,11 +150,15 @@ def post_create(request,group_id, topic_id):
 
 class PostUpdate(LoginRequiredMixin, UpdateView):
     model = Post
-    field = ['content']
+    fields = ['content']
 
 class PostDelete(LoginRequiredMixin, DeleteView):
     model = Post
-    success_url = 'group_detail'
+    def get_success_url(self):
+        post = self.get_object()
+        group_id = post.topic.group_id
+        success_url = reverse_lazy('group_detail', kwargs = {'group_id':group_id})
+        return success_url
 
 def signup(request):
     error_message = ''

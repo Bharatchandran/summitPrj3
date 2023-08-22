@@ -49,3 +49,8 @@ class Post(models.Model):
 
     class Meta:
         ordering = ['-createdAt']
+
+    def get_absolute_url(self):
+        post = Post.objects.get(id=self.id)
+        group = post.topic.group_id
+        return reverse('group_detail', kwargs={'group_id': group})
