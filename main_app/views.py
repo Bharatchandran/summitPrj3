@@ -218,7 +218,7 @@ class PostDelete(LoginRequiredMixin, DeleteView):
 #     return
 
 def create_like(request, group_id, post_id):
-    Like.objects.create(post_id=post_id )
+    Like.objects.create(post_id=post_id, user_id= request.user.id )
     return redirect('group_detail', group_id=group_id)
 
 

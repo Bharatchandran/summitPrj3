@@ -55,6 +55,10 @@ class Post(models.Model):
         group = post.topic.group_id
         return reverse('group_detail', kwargs={'group_id': group})
     
+    def user_like_post(self):
+        return self.like_set.filter(user_id = self.user.id ).count() < 1
+            
+        
     
 # class PostPhoto(models.Model):
 #     url = models.CharField(max_length=200)
@@ -62,3 +66,4 @@ class Post(models.Model):
 
 class Like(models.Model):
     post = models.ForeignKey(Post, on_delete=models.CASCADE)
+    user = models.ForeignKey(User,on_delete=models.CASCADE)
