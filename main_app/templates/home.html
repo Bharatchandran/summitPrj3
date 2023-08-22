@@ -1,8 +1,17 @@
 {% extends 'base.html'%}
 {%  block content%}
-
-
-
-<h1>SUMMIT</h1>
+<div class="hero min-h-screen" >
+    <div class="hero-overlay bg-base-200"></div>
+    <div class="hero-content text-center text-base-content">
+      <div class="max-w-md">
+        <h1 class="mb-5 text-5xl font-bold">SUMMIT</h1>
+        <p class="mb-5">Welcome to the newest community driven platform built for developers by developers. Summit is where coders assemble to climb the mountain of discussions. A place where you can elevate your code conversations! </p>
+        <div class="join space-x-1 ">
+            <a class="btn join-item btn-neutral" href="{% url 'signup' %}">Sign Up</a>
+            <a class="btn join-item btn-neutral" href="{% url 'login' %}">Log In</a>
+        </div>
+      </div>
+    </div>
+  </div> 
 
 {%  endblock%}

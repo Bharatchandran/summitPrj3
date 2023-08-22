@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{%  block content %}
+<h1>Sign Up</h1>
+
+<h4>Summit: Where Bytes and Banter Combine </h4>
+<p class="red-text">{{error_message}}</p>
+
+<form method="POST" action="{% url 'signup' %}">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn">Sign up</button>
+</form>
+{% endblock%}
