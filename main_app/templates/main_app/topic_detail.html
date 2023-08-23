@@ -4,11 +4,10 @@
 {% block content%}
 
 <div class="col-span-2">
-
     <div class="grid grid-rows-6 gap-6">
         <div class="row-span-2">
             <h1 class="text-2xl">Current Group</h1>
-            <p>Currently viewing {{ group.name }}.</p>
+            <p>Currently viewing <a href="{% url 'group_detail' group.id %}">{{ group.name }}</a>.</p>
         </div>
         <div class="row-span-2">
             <h1 class="text-2xl">Code of Conduct</h1>
@@ -31,21 +30,25 @@
 <div class="col-span-4">
     <div class="card">
         <div class="card-content">
-            {% for topic in topics %}
-                <h3 class="card-title"> {{ topic.name }} </h3>
-            {% endfor %}
+            <h3 class="card-title uppercase">{{ topic.name }}</h3>
+        </div>
+        <div class="card-action">
+            <a href="{% url 'topic_update' topic.id %}">Edit</a>
+            <a href="{% url 'topic_delete' topic.id %}">Delete</a>
         </div>
     </div>
     <div>
-        {% for topic in topics %}
-        <div>
-            <form action="{% url 'post_create' group.id topic.id %}" enctype="multipart/form-data" method="POST" >
-                {% csrf_token %}
-                {{ post_form|crispy }}
-                <input type="file" name="photo-file">
-                <input type="submit" value="Submit" class="btn">
-            </form>
-        </div><br>
+        <br><p>Add a Post:</p>
+        <form action="{% url 'post_create' group.id topic.id %}" enctype="multipart/form-data" method="POST">
+        {% csrf_token %}
+        {{ post_form|crispy }}
+        <input type="file" name="photo-file">
+        <input type="submit" value="Submit" class="btn">
+        </form><br>
+    </div>
+    <div>
+        <p class="card-title uppercase">Browse Posts:</p>
+        {% for post in posts %}
         <div>
             {% for post in topic.post_set.all %}
             <p>{{post.content}}</p>
@@ -62,10 +65,7 @@
         <a href="{% url 'post_delete' post.id %}">Delete</a>
         {%endfor%}
     </div>
-        <a href="{% url 'topic_update' topic.id %}">Edit</a>
-        <a href="{% url 'topic_delete' topic.id %}">Delete</a>
-        <h1>{{topic.createdAt}}</h1>
-        {% endfor %}
+    {% endfor %}
 </div>
 
 {% endblock %}

@@ -7,7 +7,7 @@
     <div class="grid grid-rows-6 gap-6">
         <div class="row-span-2">
             <h1 class="text-2xl">Current Group</h1>
-            <p>Currently viewing {{ group.name }}.</p>
+            <p>Currently viewing <a href="{% url 'group_detail' group.id %}">{{ group.name }}</a>.</p>
         </div>
         <div class="row-span-2">
             <h1 class="text-2xl">Code of Conduct</h1>
@@ -26,6 +26,8 @@
         </div>
     </div>
 </div>
+
+
 <div class="col-span-4">
     <div class="card">
         <div class="card-content">
@@ -35,19 +37,19 @@
             <a href="{% url 'group_update' group.id %}">Edit</a>
             <a href="{% url 'group_delete' group.id %}">Delete</a>
         </div>
-    </div><br>
+    </div>
     <div>
-        {% for topic in topics %}
-            <p class="text-2xl">Topics:</p>
-            <h2>"<a href="{% url 'topic_detail' topic.id %}">{{topic.name}}</a>"</h2>
-            <div>
-                <form action="{% url 'post_create' group.id topic.id %}" enctype="multipart/form-data" method="POST" >
-                    {% csrf_token %}
-                    {{ post_form|crispy }}
-                    <input type="file" name="photo-file">
-                    <input type="submit" value="Submit" class="btn">
-                </form>
-            </div>
+        <br><p>Add a Topic:</p>
+        <form action="{% url 'topic_create' group.id %}" enctype="multipart/form-data" method="POST" >
+        {% csrf_token %}
+        {{ topic_form|crispy }}
+        <input type="submit" value="Submit" class="btn">
+        </form><br>
+    </div>
+    <div>
+        <p class="card-title uppercase">Topics:</p>
+        {% for topic in topics %}s
+            <h2 class="underline">"<a href="{% url 'topic_detail' topic.id %}">{{topic.name}}</a>"</h2>
         <div>
             {% for post in topic.post_set.all %}
             <p>{{post.content}}</p>
