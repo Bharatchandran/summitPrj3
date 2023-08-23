@@ -3,11 +3,10 @@
 {% load tailwind_filters %}
 {% block content%}
 
-<div class="col-start-1 col-span-2 items-center">
-
-    <h1 class="ml-10 mt-10 text-5xl font-bold leading-loose ">Join the Summit<br>SIGN IN </h1>
+<div class="col-start-1 col-span-2" >
+    <h1 class="ml-10 p-2 mt-10 text-4xl leading-loose">Peak Your Programming Potential</h1> 
+    <h1 class="ml-10 mt-10 text-8xl font-bold leading-loose">SIGN IN </h1>
 </div>
-
 <div class="col-start-3 col-span-2 mt-10 ">
     <form action="{% url 'login' %}" method="POST">
         {% csrf_token %}
