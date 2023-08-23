@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% block content %}
-<div class="col-start-1 col-end-2 w-[90%] ml-10 fixed top-20  h-5/6 grid grid-rows-6 gap-4 ">
+
+<div class="col-start-1 col-end-2  ml-10 fixed top-20  h-5/6 grid grid-rows-6 gap-4 ">
 
   <div class=" overflow-auto row-start-2 row-end-4 w-full max-w-md p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-8 dark:bg-gray-800 dark:border-gray-700 relative ">
     <div class="flex items-center sticky top-0  dark:bg-gray-800  justify-between  w-[100%]">
@@ -64,17 +65,20 @@
 </div>
   
 </div>
-<div class="col-start-3 col-end-10  ">
-  <div class="flex justify-between items-center mb-10 ">
-    <h1 class="text-5xl  font-bold text-center text-black  ">Interest List</h1>
-      <a class="btn bg-white dark:bg-gray-800  btn-neutral " href="{% url 'interest_create' %}"><svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 20 20">
+
+
+
+<div class="col-start-4 col-end-8  ">
+  <div class="flex justify-between items-center">
+    <h1 class="text-5xl font-bold text-center text-black m-10 ">Interest List</h1>
+      <a class="btn bg-white dark:bg-gray-800  btn-neutral m-6 mr-32" href="{% url 'interest_create' %}"><svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 20 20">
         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 5.757v8.486M5.757 10h8.486M19 10a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/>
       </svg></a>
   </div>
 
 <div class="'flex flex-row space-x-4">
   {% if interest_list  %}
-  <div class=" grid md:grid-cols-1  xl:grid-cols-2 gap-4">
+  <div class=" grid md:grid-cols-1  xl:grid-cols-1 gap-4">
     {% for interest in interest_list %}
 
     <div  class="flex flex-col items-center bg-white border border-gray-200 rounded-lg shadow md:flex-row md:max-w-4xl hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700 h-52">
@@ -94,7 +98,6 @@
       </div>
       </div>
       <div class="flex flex-col h-5/6 justify-between relative">
-        {%if interest.owner_id == user_id%}
       <div class="dropdown dropdown-end absolute right-0 top-0 ">
         <label tabindex="0" class="btn bg-white  dark:bg-gray-800 border-0 bg- m-1"><svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 3">
           <path d="M2 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Zm6.041 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM14 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Z"/>
@@ -109,7 +112,6 @@
         </li>
         </ul>
       </div>
-      {%endif%}
       
     </div>
      
@@ -130,4 +132,3 @@
 </div>
 </div>
 {% endblock %}
-
