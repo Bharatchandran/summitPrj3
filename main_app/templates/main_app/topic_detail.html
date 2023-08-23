@@ -32,10 +32,6 @@
         <div class="card-content">
             <h3 class="card-title uppercase">{{ topic.name }}</h3>
         </div>
-        <div class="card-action">
-            <a href="{% url 'topic_update' topic.id %}">Edit</a>
-            <a href="{% url 'topic_delete' topic.id %}">Delete</a>
-        </div>
     </div>
     <div>
         <br><p>Add a Post:</p>
@@ -48,7 +44,6 @@
     </div>
     <div>
         <p class="card-title uppercase">Browse Posts:</p>
-        {% for post in posts %}
         <div>
             {% for post in topic.post_set.all %}
             <p>{{post.content}}</p>
@@ -65,7 +60,6 @@
         <a href="{% url 'post_delete' post.id %}">Delete</a>
         {%endfor%}
     </div>
-    {% endfor %}
 </div>
 
 {% endblock %}

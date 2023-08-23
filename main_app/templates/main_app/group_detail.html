@@ -48,7 +48,7 @@
     </div>
     <div>
         <p class="card-title uppercase">Topics:</p>
-        {% for topic in topics %}s
+        {% for topic in topics %}
             <h2 class="underline">"<a href="{% url 'topic_detail' topic.id %}">{{topic.name}}</a>"</h2>
         <div>
             {% for post in topic.post_set.all %}

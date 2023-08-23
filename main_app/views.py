@@ -156,6 +156,7 @@ def topic_detail(request, topic_id):
         'topic_form': topic_form,
         'topics': topics,
         'post_form': post_form,
+        'topic': topic,
     })
 
 def post_create(request, group_id, topic_id):
