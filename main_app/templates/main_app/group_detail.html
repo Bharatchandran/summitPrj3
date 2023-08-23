@@ -3,20 +3,26 @@
 {% load tailwind_filters %}
 {% block content%}
 <div class="col-span-2">
-    <h1 class="text-2xl">Current Group</h1>
-    <p>Currently viewing {{ group.name }}.</p>
-    <h1 class="text-2xl">Code of Conduct</h1>
-    <p>
-        1. Be civil and respectful to others<br>
-        2. Posts must be related to the interest<br>
-        3. No advertising or marketing<br>
-        4. No hate speech (racism, sexism etc.)
-    </p>
-    <h1 class="text-2xl">Topic List</h1>
-    <div>
-        {% for topic in topics %}
-            <h2> {{ topic.name }} </h2>
-        {%endfor%}
+
+    <div class="grid grid-rows-6 gap-6">
+        <div class="row-span-2">
+            <h1 class="text-2xl">Current Group</h1>
+            <p>Currently viewing {{ group.name }}.</p>
+        </div>
+        <div class="row-span-2">
+            <p>
+                1. Be civil and respectful to others<br>
+                2. Posts must be related to the interest<br>
+                3. No advertising or marketing<br>
+                4. No hate speech (racism, sexism etc.)
+            </p>
+        </div>
+        <div class="row-span-2 flex flex-col">
+            <h1>Topic List</h1>
+            {%for topic in topics %}
+            <a href="">{{topic.name}}</a>
+            {%endfor%}
+        </div>
     </div>
 </div>
 <div class="col-span-4">

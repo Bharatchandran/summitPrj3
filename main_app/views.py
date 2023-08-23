@@ -49,10 +49,15 @@ class InterestDelete(LoginRequiredMixin, DeleteView):
 
 def group_list(request, interest_id):
     groups = Group.objects.filter(interest=interest_id)
-    print(groups)
+    interests = Interest.objects.all()
+    currentInterest = Interest.objects.get(id=interest_id)
+
+
     return render(request, 'main_app/group_list.html', {
         'interest_id': interest_id,
-        'groups': groups
+        'groups': groups,
+        'interests': interests,
+        'currentInterest': currentInterest
     })
 
 

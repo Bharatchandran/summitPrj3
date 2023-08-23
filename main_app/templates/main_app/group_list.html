@@ -2,6 +2,22 @@
 {% extends 'base.html'%}
 {% block content%}
 
+
+<div class="col-span-2">
+<div class="grid grid-rows-6">
+    <div class="row-span-2">
+        Interest: {{currentInterest.name}}
+    </div>
+    <div class="row-span-4 flex flex-col">
+        <h1>Interest List</h1>
+        {%for interest in interests %}
+        <a href="">{{interest.name}}</a>
+        {%endfor%}
+    </div>
+</div>
+
+
+</div>
 <div class="col-span-4">
 <a href="{%url 'group_new' interest_id %}">Create Group</a>
 <a href="{%url 'interest_update' interest_id %}">Edit Interest</a>
