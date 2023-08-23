@@ -23,3 +23,7 @@ input[type='submit']{
 
     background: black
 }
+
+#bg-summit{
+    background-image: url(https://i.imgur.com/w4RtIP7.jpeg);
+}
