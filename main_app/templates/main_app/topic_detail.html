@@ -2,6 +2,7 @@
 {% load crispy_forms_tags %}
 {% load tailwind_filters %}
 {% block content%}
+
 <div class="col-span-2">
 
     <div class="grid grid-rows-6 gap-6">
@@ -19,43 +20,32 @@
             </p>
         </div>
         <div class="row-span-2 flex flex-col">
-            <h1 class="text-2xl">Topic List</h1>
+            <h1 class="text-2xl">Other Topics in Group</h1>
             {%for topic in topics %}
             <a href="{% url 'topic_detail' topic.id %}">{{topic.name}}</a>
             {%endfor%}
         </div>
     </div>
 </div>
+
 <div class="col-span-4">
     <div class="card">
         <div class="card-content">
-            <h3 class="card-title">{{ group.name }}</h3>
+            {% for topic in topics %}
+                <h3 class="card-title"> {{ topic.name }} </h3>
+            {% endfor %}
         </div>
-        <div class="card-action">
-            <a href="{% url 'group_update' group.id %}">Edit</a>
-            <a href="{% url 'group_delete' group.id %}">Delete</a>
-        </div>
-    </div>
-    <!-- Topic form -->
-    <div>
-        <form action="{% url 'topic_create' group.id %}" method="POST">
-            {% csrf_token %}
-            {{ topic_form|crispy }}
-            <input type="submit" value="Submit" class="btn">
-        </form>
     </div>
     <div>
         {% for topic in topics %}
-            <p class="text-2xl">Topics:</p>
-            <h2>"{{ topic.name }}"</h2>
-            <div>
-                <form action="{% url 'post_create' group.id topic.id %}" enctype="multipart/form-data" method="POST" >
-                    {% csrf_token %}
-                    {{ post_form|crispy }}
-                    <input type="file" name="photo-file">
-                    <input type="submit" value="Submit" class="btn">
-                </form>
-            </div>
+        <div>
+            <form action="{% url 'post_create' group.id topic.id %}" enctype="multipart/form-data" method="POST" >
+                {% csrf_token %}
+                {{ post_form|crispy }}
+                <input type="file" name="photo-file">
+                <input type="submit" value="Submit" class="btn">
+            </form>
+        </div><br>
         <div>
             {% for post in topic.post_set.all %}
             <p>{{post.content}}</p>
@@ -68,15 +58,14 @@
             <button type="submit">like</button>
         </form>
         <p>Like: {{post.like_set.count}}</p>
-
         <a href="{% url 'post_update' post.id %}">Edit</a>
         <a href="{% url 'post_delete' post.id %}">Delete</a>
         {%endfor%}
     </div>
-    <a href="{% url 'topic_update' topic.id %}">Edit</a>
-    <a href="{% url 'topic_delete' topic.id %}">Delete</a>
-    <h1>{{topic.createdAt}}</h1>
-    {% endfor %}
+        <a href="{% url 'topic_update' topic.id %}">Edit</a>
+        <a href="{% url 'topic_delete' topic.id %}">Delete</a>
+        <h1>{{topic.createdAt}}</h1>
+        {% endfor %}
 </div>
 
 {% endblock %}

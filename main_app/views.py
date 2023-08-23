@@ -65,12 +65,10 @@ def group_detail(request, group_id):
     group = Group.objects.get(id=group_id)
     topic_form = TopicForm()
     post_form = PostForm()
-    # topic = Topic.objects.get()
     topics = group.topic_set.all()
 
     def user_like_post(self):
         print(self.user.id)
-        # print(self.like_set.get(user_id = self.user.id),"===")
         return self.like_set.get(user_id = self.user.id)
 
     return render(request, 'main_app/group_detail.html', {
@@ -79,13 +77,6 @@ def group_detail(request, group_id):
         'topics': topics,
         'post_form': post_form,
     })
-
-# class GroupCreate(LoginRequiredMixin, CreateView):
-#     model = Group
-#     fields = ['name']
-#     def form_valid(self, form):
-#         form.instance.user = self.request.user
-#         return super().form_valid(form)
 
 
 def group_new(request, interest_id):
@@ -106,12 +97,6 @@ def group_create(request, interest_id):
         new_group.save()
     return redirect('group_list', interest_id=interest_id)
 
-# class MygroupList(LoginRequiredMixin, ListView):
-#     model = Group
-#     def get_query_ser(self):
-#         queryset = super().get_queryset()
-#         queryset = queryset.filter(user=self.request.user)
-#         return queryset
     
 def mygroup_index(request):
     member = Member.objects.all().filter(user_id=request.user.id)
@@ -142,13 +127,6 @@ class TopicUpdate(LoginRequiredMixin, UpdateView):
     fields = ['name']
 
 
-# class TopicDelete(LoginRequiredMixin, DeleteView):
-#     model = Topic
-#     # success_url = 'group_detail'
-#     # success_url = '/interests'
-#     group_id = model.group_id
-#     success_url = reverse_lazy('group_detail', kwargs = {'group_id':group_id})
-
 class TopicDelete(LoginRequiredMixin, DeleteView):
     model = Topic
     # success_url = 'group_detail'
@@ -162,15 +140,23 @@ class TopicDelete(LoginRequiredMixin, DeleteView):
                                    'group_id': group_id})
         return success_url
 
-# def post_create(request,group_id, topic_id):
-#     form = PostForm(request.POST)
-#     if form.is_valid():
-#         new_post = form.save(commit=False)
-#         new_post.topic_id = topic_id
-#         # new_post.user_id = request.user.id
-#         new_post.save()
-#     return redirect('group_detail',group_id=group_id)
+def topic_detail(request, topic_id):
+    group = Group.objects.get()
+    topic = Topic.objects.get(id=topic_id)
+    topic_form = TopicForm()
+    post_form = PostForm()
+    topics = group.topic_set.all()
 
+    def user_like_post(self):
+        print(self.user.id)
+        return self.like_set.get(user_id = self.user.id)
+
+    return render(request, 'main_app/topic_detail.html', {
+        'group': group,
+        'topic_form': topic_form,
+        'topics': topics,
+        'post_form': post_form,
+    })
 
 def post_create(request, group_id, topic_id):
     form = PostForm(request.POST)
@@ -215,28 +201,6 @@ class PostDelete(LoginRequiredMixin, DeleteView):
                                    'group_id': group_id})
         return success_url
 
-# def add_photo(request, post_id):
-#     # photo-file will be the "name" attribute on the <input type="file">
-#     post = Post.objects.get(id = post_id)
-#     group_id = post.topic.group_id
-#     photo_file = request.FILES.get('photo-file', None)
-#     if photo_file:
-#         s3 = boto3.client('s3')
-#         # need a unique "key" for S3 / needs image file extension too
-#         key = uuid.uuid4().hex[:6] + photo_file.name[photo_file.name.rfind('.'):]
-#         # just in case something goes wrong
-#         try:
-#             bucket = os.environ['S3_BUCKET']
-#             s3.upload_fileobj(photo_file, bucket, key)
-#             # build the full url string
-#             url = f"{os.environ['S3_BASE_URL']}{bucket}/{key}"
-#             # we can assign to cat_id or cat (if you have a cat object)
-#             PostPhoto.objects.create(url=url, post_id=post_id)
-#         except Exception as e:
-#             print('An error occurred uploading file to S3')
-#             print(e)
-#     # return redirect('detail', group_id=group_id)
-#     return
 
 def add_member_to_group(request,interest_id,group_id):
     Member.objects.create(user_id=request.user.id, group_id=group_id, interest_id=interest_id)
