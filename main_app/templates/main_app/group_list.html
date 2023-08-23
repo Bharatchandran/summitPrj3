@@ -21,14 +21,16 @@
 <div class="col-span-8">
 
 <h1 class="text-5xl font-bold text-center text-black m-10">Group List</h1>
-<div class="grid md:grid-cols-2  xl:grid-cols-4 gap-4">
+<div class="grid md:grid-cols-2  xl:grid-cols-4 gap-4 mr-20">
 {% for group in groups %}
     
 
 
-      <div class="w-full max-w-lg bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-        <div class="dropdown dropdown-end">
-  <label tabindex="0" class="btn m-1">Click</label>
+      <div class="w-full max-w-lg bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 relative">
+        <div class="dropdown dropdown-end absolute right-0 top-0 ">
+  <label tabindex="0" class="btn bg-white border-0  dark:bg-gray-800 m-1"><svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 3">
+    <path d="M2 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Zm6.041 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM14 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Z"/>
+  </svg></label>
   <ul tabindex="0" class="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">
     <li>
       <a href="{%url 'group_update' group.id%}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Edit</a>
@@ -39,7 +41,7 @@
   </li>
   </ul>
 </div>
-        <div class="flex flex-col items-center pb-10">
+        <div class="mt-10 flex flex-col items-center pb-10">
             <img class="w-24 h-24 mb-3 rounded-full shadow-lg" src="/docs/images/people/profile-picture-3.jpg" alt="Bonnie image"/>
             <h5 class="mb-1 text-xl font-medium text-gray-900 dark:text-white">{{ group.name }}</h5>
             <span class="text-sm text-gray-500 dark:text-gray-400">Visual Designer</span>
