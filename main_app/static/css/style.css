@@ -12,7 +12,7 @@ input[type="text"], textarea, input[type='number']{
     margin-top: 2rem; !important; */   
 }
 
-input[type='submit']{
+/* input[type='submit']{
     font-size:15px;
     width:120px;
     height:45px;
@@ -22,7 +22,7 @@ input[type='submit']{
     border-radius: 10px;
 
     background: black
-}
+} */
 
 #bg-summit{
     background-image: url(https://i.imgur.com/w4RtIP7.jpeg);
