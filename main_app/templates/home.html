@@ -1,12 +1,12 @@
 {% extends 'base.html'%}
 {%  block content%}
 
-  <div class="hero bg-[url('../static/images/summit-bg.png')] min-h-screen" >
+  <div class="hero bg-[url('../static/images/summit-bg.png')] min-h-screen col-span-6 " >
     <div class="hero-content text-center text-base-content">
       <div class="w-4/5">
-        <div class='p-4 wd-60 rounded-full bg-slate-900/50 '>
-            <h1 class="m-10 text-8xl drop-shadow-xl tracking-widest font-bold text-white">SUMMIT</h1>
-            <p class="mb-10 text-2xl drop-shadow-[5px 5px 15px 5px #000000] outline-4 text-white">Welcome to the newest community driven platform built for developers by developers.<br><br> A place where you can elevate your code conversations! </p>
+        <div class='items-center p-4 wd-60 rounded-full bg-slate-900/50'>
+            <h1 class="m-10 text-8xl drop-shadow-xl tracking-widest font-bold text-white text-center ">SUMMIT</h1>
+            <p class="mb-10 text-2xl text-center text-white">Welcome to the newest community driven platform built for developers by developers.<br><br> A place where you can elevate your code conversations! </p>
             <div class="join space-x-1 ">
                 <a class="m-5 text-lg rounded-full btn join-item" href="{% url 'signup' %}">Sign Up</a>
                 <a class="m-5 text-lg rounded-full btn join-item" href="{% url 'login' %}">Log In</a>
