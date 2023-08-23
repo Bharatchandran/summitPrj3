@@ -1,36 +1,56 @@
 {% extends 'base.html'%}
 {% block content%}
-<h1 class="text-5xl font-bold text-center text-black m-10">Group List</h1>
 
 <!-- Perhap change this to dynamic dispay interest name for the title -->
+<div class="col-start-2 col-end-9">
+<h1 class="text-5xl font-bold text-center text-black m-10">Group List</h1>
 
-<div class="space-x-1 ">
-</div>
-<div class="'flex flex-row space-x-4">
+    <div class="col-span-8">
+
     {% if member  %}
-        {% for el in member %}
-        <h1>{{ el.group.id }}</h1>
-        <a href="{% url 'group_detail' el.group.id %}">
+<div class="grid md:grid-cols-2  xl:grid-cols-4 gap-4">
 
-            <div class="card w-96 glass flex-grow" ">
-                <div class="card-body items-center text-center mb-3">
-                    <span class="card-title">{{ el.group.name }}</span>
-                </div>
+        {% for el in member %}
+        
+
+
+
+
+
+      <div class="w-full max-w-lg bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+        <div class="dropdown dropdown-end">
+  <label tabindex="0" class="btn m-1">Click</label>
+  <ul tabindex="0" class="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">
+    <li>
+      <a href="{%url 'group_update' el.group.id%}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Edit</a>
+  </li>
+  
+  <li>
+      <a href="{%url 'group_delete' el.group.id%}" class="block px-4 py-2 text-sm text-red-600 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Delete</a>
+  </li>
+  </ul>
+</div>
+        <div class="flex flex-col items-center pb-10">
+            <img class="w-24 h-24 mb-3 rounded-full shadow-lg" src="/docs/images/people/profile-picture-3.jpg" alt="Bonnie image"/>
+            <h5 class="mb-1 text-xl font-medium text-gray-900 dark:text-white">{{ el.group.name }}</h5>
+            <span class="text-sm text-gray-500 dark:text-gray-400">Visual Designer</span>
+            <div class="flex mt-4 space-x-3 md:mt-6">
                 
-            </div>
-            <div class="space-x-1 ">
-                <a class="btn btn-neutral mt-3" href="{%url 'group_update' el.group.id %}">Edit </a>
-                <a class="btn btn-neutral" href="{%url 'group_delete' el.group.id %}">Delete </a>
-            </div>
-            <div class="space-x-1 ">
-            </div>
-        </a>
+               
+              <a href="{%url 'group_detail' el.group.id%}" class="inline-flex items-center px-4 py-2 text-sm font-medium text-center text-gray-900 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-700 dark:focus:ring-gray-700">next</a>
+          </div>
+        </div>
+    </div>
+    
         {% endfor %}
+</div>
+
     {% else %}
         <h4 class="text-center text-4xl mb-8 dark:text-black">The Group List is empty</h4>
         <h3 class="text-center text-3xl mb-8 dark:text-black">Create an New Group Below </h3>
     {% endif %}
     <div class="flex justify-center mt-4">
     </div>
+</div>
 </div>
 {% endblock %}

@@ -1,21 +1,56 @@
 {% extends 'base.html' %}
 {% block content %}
-
+<div class="col-start-2 col-end-8">
 <h1 class="text-5xl font-bold text-center text-black m-10 ">Interest List</h1>
 
 <div class="'flex flex-row space-x-4">
   {% if interest_list  %}
+  <div class=" grid md:grid-cols-1  xl:grid-cols-1 gap-4">
     {% for interest in interest_list %}
-      <h1>{{ interest.id }}</h1>
-      <a href="{% url 'group_list' interest.id %}">
 
-        <div class="card w-96 glass flex-grow" ">
-          <div class="card-body items-center text-center">
-            <span class="card-title">{{ interest.name }}</span>
-          </div>
-        </div>
-      </a>
+    <div  class="flex flex-col items-center bg-white border border-gray-200 rounded-lg shadow md:flex-row md:max-w-6xl hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700 h-52">
+      <img class="object-cover w-full rounded-t-lg h-96 md:h-auto md:w-48 md:rounded-none md:rounded-l-lg" src="/docs/images/blog/image-4.jpg" alt="">
+      <div class="flex flex-col justify-between p-4 leading-normal">
+          <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{{interest.name}}</h5>
+        
+
+          <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order.</p>
+          <div class="w-full flex justify-end ">
+          <a href="{%url 'group_list' interest.id%}" class=" inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 w-24  ">
+            next
+             <svg class="w-3.5 h-3.5 ml-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
+            </svg>
+        </a>
+      </div>
+      </div>
+      <div class="flex flex-col h-5/6 justify-between">
+      <div class="dropdown dropdown-end">
+        <label tabindex="0" class="btn bg-white  dark:bg-gray-800 border-0 bg- m-1"><svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 3">
+          <path d="M2 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Zm6.041 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM14 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Z"/>
+        </svg></label>
+        <ul tabindex="0" class="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">
+          <li>
+            <a href="{%url 'interest_update' interest.id%}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Edit</a>
+        </li>
+        
+        <li>
+            <a href="{%url 'interest_delete' interest.id%}" class="block px-4 py-2 text-sm text-red-600 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Delete</a>
+        </li>
+        </ul>
+      </div>
+      
+    </div>
+     
+  </div>
+
+
+      
+    
+
+
       {% endfor %}
+    </div>
   {% else %}
     <h4 class="text-4xl dark:text-black">The Interest List is empty</h4>
     <h3 class="text-3xl dark:text-black">Create an Interest Below </h3>
@@ -23,6 +58,7 @@
   <div class="flex justify-center mt-4">
     <a class="btn btn-neutral m-6" href="{% url 'interest_create' %}">Create an Interest</a>
   </div>
+</div>
 </div>
 {% endblock %}
 
