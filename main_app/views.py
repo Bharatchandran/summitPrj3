@@ -12,6 +12,7 @@ from .models import Post, Interest, Topic, Group, Like, Member
 from .forms import GroupForm, TopicForm, PostForm
 from datetime import datetime
 from django.urls import reverse_lazy
+from random import randrange
 # Create your views here.
 
 
@@ -25,7 +26,17 @@ def about(request):
 
 class InterestList(LoginRequiredMixin, ListView):
     model = Interest
-
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        group = Group.objects.all()
+        my_group = Member.objects.filter(user_id = self.request.user.id)
+        # Add extra context data
+        context['user_id'] = self.request.user.id
+        context['groups'] = Group.objects.filter(owner_id = self.request.user.id)
+        context['my_groups'] = my_group
+        
+        
+        return context
 
 class InterestCreate(LoginRequiredMixin, CreateView):
     model = Interest
@@ -51,13 +62,15 @@ def group_list(request, interest_id):
     groups = Group.objects.filter(interest=interest_id)
     interests = Interest.objects.all()
     currentInterest = Interest.objects.get(id=interest_id)
-
-
+    user_id = request.user.id
+    members = Member.objects.all()
     return render(request, 'main_app/group_list.html', {
         'interest_id': interest_id,
         'groups': groups,
         'interests': interests,
-        'currentInterest': currentInterest
+        'currentInterest': currentInterest,
+        'user_id': user_id,
+        'members': members,
     })
 
 
@@ -89,12 +102,37 @@ def group_new(request, interest_id):
 
 
 def group_create(request, interest_id):
+    random_image = ["icon.svg","initials.svg","laurent.svg","laurent-round.svg","minidenticons.svg"]
+    
     form = GroupForm(request.POST)
 
     if form.is_valid():
         new_group = form.save(commit=False)
         new_group.interest_id = interest_id
+        new_group.owner = request.user
+        photo_file = request.FILES.get('photo-file', None)
+        if photo_file:
+            s3 = boto3.client('s3')
+            # need a unique "key" for S3 / needs image file extension too
+            key = uuid.uuid4().hex[:6] + \
+                photo_file.name[photo_file.name.rfind('.'):]
+            # just in case something goes wrong
+            try:
+                bucket = os.environ['S3_BUCKET']
+                s3.upload_fileobj(photo_file, bucket, key)
+                # build the full url string
+                url = f"{os.environ['S3_BASE_URL']}{bucket}/{key}"
+                # we can assign to cat_id or cat (if you have a cat object)
+                new_group.image_url = url
+            except Exception as e:
+                print('An error occurred uploading file to S3')
+                print(e)
+        if not new_group.image_url:
+            new_group.image_url = random_image[randrange(5)]
+
+
         new_group.save()
+        
     return redirect('group_list', interest_id=interest_id)
 
     
@@ -110,7 +148,13 @@ class GroupUpdate(LoginRequiredMixin, UpdateView):
 
 class GroupDelete(LoginRequiredMixin, DeleteView):
     model = Group
-    success_url = '/interests'
+    # success_url = '/interests'
+    def get_success_url(self):
+        group = self.get_object()
+        interest_id = group.interest_id
+        success_url = reverse_lazy('group_list', kwargs={
+                                   'interest_id': interest_id})
+        return success_url
 
 
 def topic_create(request, group_id):
@@ -118,6 +162,7 @@ def topic_create(request, group_id):
     if form.is_valid():
         new_topic = form.save(commit=False)
         new_topic.group_id = group_id
+        new_topic.owner = request.user
         new_topic.save()
     return redirect('group_detail', group_id=group_id)
 

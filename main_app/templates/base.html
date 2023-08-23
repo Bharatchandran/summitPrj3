@@ -11,8 +11,9 @@
 
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
-    <header class="h-[10vh]">
+<body >
+    <div class="relative">
+    <header class="h-[10vh] sticky top-0 z-40 h-24 w-full">
         <div class="navbar bg-neutral text-neutral-content">
             <div class="navbar-start flex items-center space-x-4">
                 <div class="dropdown  ">
@@ -49,19 +50,21 @@
             </div>
         </div>
     </header>
-    <main class="w-screen h-[70vh]">
+    <main class="w-screen   ">
         
-        <div class="grid grid-cols-10">
+        <div class="grid grid-cols-10 mb-40 ">
         {% block content%}
         {% endblock %}
         </div>
         
     </main>
-    <footer class="footer items-center p-4 bg-neutral text-neutral-content h-[20vh]">
-        <div class="items-center grid-flow-col">
+    <footer class="footer  fixed left-0 right-0 bottom-0 p-4 bg-neutral text-neutral-content  ">
+        <div class="items-center  grid-flow-col  ">
         <h3 width="150" height="150" viewBox="0 0 24 24" fill-rule="evenodd" clip-rule="evenodd" class="fill-current text-6xl ">△</h3> 
         <p>Reach A New Summit<br/>Summit © 2023 All right reserved</p>
+        </div>
     </footer>
+</div>
 </body>
 </html>
 

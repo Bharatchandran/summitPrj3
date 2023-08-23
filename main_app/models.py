@@ -11,7 +11,9 @@ import datetime
 class Interest(models.Model):
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
     name = models.CharField(max_length=100)
-
+    createdAt = models.DateTimeField(auto_now_add=True)
+    class Meta:
+        ordering = ['-createdAt']
     def __str__(self):
         return f"{self.name}:{self.id}"
 
@@ -20,10 +22,14 @@ class Interest(models.Model):
 
 
 class Group(models.Model):
+    owner = models.ForeignKey(User, on_delete=models.CASCADE)
     interest = models.ForeignKey(Interest, on_delete=models.CASCADE)
     name = models.CharField(max_length=100)
+    image_url = models.CharField(max_length=200)
+    createdAt = models.DateTimeField(auto_now_add=True)
     # member = models.ForeignKey(User, on_delete=models.CASCADE)
-
+    class Meta:
+        ordering = ['-createdAt']
     def __str__(self):
         return f"{self.name}:{self.id}"
     def get_absolute_url(self):
@@ -32,6 +38,7 @@ class Group(models.Model):
 
 
 class Topic(models.Model):
+    owner = models.ForeignKey(User, on_delete=models.CASCADE)
     group = models.ForeignKey(Group, on_delete=models.CASCADE)
     name = models.CharField('Topic', max_length=100)
     createdAt = models.DateTimeField(auto_now_add=True)
