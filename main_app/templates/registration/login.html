@@ -3,17 +3,21 @@
 {% load tailwind_filters %}
 {% block content%}
 
+<div class="col-start-1 col-span-2 items-stretch">
 
-<h1 class="m-5 text-3xl font-bold ">Join the Summit<br>SIGN IN </h1>
+    <h1 class="ml-10 mt-10 text-3xl font-bold leading-loose ">Join the Summit<br>SIGN IN </h1>
+</div>
 
-<form action="{% url 'login' %}" method="POST">
-    {% csrf_token %}
-    {{form|crispy}}
-    <input type="hidden" name="next" value="{{ next }}">
-    <button type="submit" class="btn">Log In</button>
-</form>
+<div class="col-start-3 col-span-2 mt-10">
+    <form action="{% url 'login' %}" method="POST">
+        {% csrf_token %}
+        {{form|crispy}}
+        <input type="hidden" name="next" value="{{ next }}">
+        <button type="submit" class="btn btn-outline btn-success text-black">Log In</button>
+    </form>
 
 
+</div>    
 
 
 
