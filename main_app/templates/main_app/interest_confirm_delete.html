@@ -1,22 +1,22 @@
 {% extends 'base.html' %}
-
+{% load crispy_forms_tags %}
+{% load tailwind_filters %}
 {% block content %}
-<h1 class="text-5xl font-bold text-center text-black m-10" >Delete Interest</h1>
 
+<div class="col-start-1 col-span-2 ml-5 mt-10">
+    <h1 class="ml-10 mt-10 text-7xl font-bold  capitalize leading-loose">Are you sure you want to delete<br><span class="underline decoration-solid" >{{ object.name }}</span>?</h1>
 
-<div class="text-center m-5">
-    <h4 class="text-lg  font-medium text-gray-900 dark:text-black m=10">Are you sure you want to delete <span class="underline decoration-solid" >{{ object.name }}</span> ?</h4>
-    
+</div>
+<div class="col-start-3 col-span-2 mt-10 flex flex-col items-center justify-center">
     <form action="" method="POST">
         {% csrf_token %}
-        <input class="btn btn-neutral m-6" type="submit" value="Delete" class="btn">
-        <a class="btn btn-neutral m-6" href="{% url 'group_list' object.id %}" value="Cancel">Cancel</a>
+        <div class="mt-6">
+            <input class=" btn btn-error btn-wide m-6 " type="submit" value="Delete" class="btn">
+            <a class="btn btn-wide btn-warning m-6" href="{% url 'group_list' object.id %}" value="Cancel">Cancel</a>
+        </div>
     </form>
+
 </div>
 
 {% endblock %}
-
-
-
-
 

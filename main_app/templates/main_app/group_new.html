@@ -4,10 +4,15 @@
 {% load tailwind_filters %}
 {% block content%}
 
-<h1 class="text-5xl font-bold text-center text-black m-10" >Create a New Group</h1>
-<form action="{% url 'group_create'  interest_id%}" method="POST">
-    {%csrf_token%}
-    {{group_form|crispy}}
-    <input type="submit" value="Submit">
-</form>
+<div class="col-start-1 col-span-2 ml-5 mt-10">
+    <h1 class="ml-10 mt-10 text-7xl font-bold  capitalize leading-loose">Create a New Group</h1>
+</div>
+<div class="col-start-3 col-span-2 mt-10 p-10" >
+    <form action="{% url 'group_create'  interest_id%}" method="POST">
+        {%csrf_token%}
+        {{group_form|crispy}}
+        <input type="submit" value="Submit" class="btn btn-wide btn-outline btn-success mt-5" >
+    </form>
+
+</div>
 {% endblock %}
