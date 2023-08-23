@@ -2,20 +2,19 @@
 {% load crispy_forms_tags %}
 {% load tailwind_filters %}
 {% block content %}
-
-<div class="col-start-1 col-span-2 ml-5 mt-10">
-    <h1 class="ml-10 mt-10 text-7xl font-bold  capitalize leading-loose">Are you sure you want to delete<br><span class="underline decoration-solid" >{{ object.name }}</span>?</h1>
+<!-- NEW TEMPLATE  -->
+<div class="col-start-2 col-span-2 ml-5 mt-10">
+    <h1 class="ml-10 mt-10 text-7xl font-bold  capitalize leading-loose">Are you sure you want to delete<br><span class="underline italic decoration-solid">{{ object.name }}</span>?</h1>
 
 </div>
-<div class="col-start-3 col-span-2 mt-10 flex flex-col items-center justify-center">
+<div class="col-start-4 col-span-3 mt-10 flex flex-col justify-center">
     <form action="" method="POST">
         {% csrf_token %}
-        <div class="mt-6">
-            <input class=" btn btn-error btn-wide m-6 " type="submit" value="Delete" class="btn">
-            <a class="btn btn-wide btn-warning m-6" href="{% url 'group_list' object.id %}" value="Cancel">Cancel</a>
+        <div class="mt-6 ml-[-20]">
+            <input class=" btn btn-lg btn-error btn-wide m-6" type="submit" value="Delete" class="btn">
+            <a class="btn btn-lg btn-wide btn-warning m-6" href="{% url 'group_list' object.id %}" value="Cancel">Cancel</a>
         </div>
     </form>
-
 </div>
 
 {% endblock %}

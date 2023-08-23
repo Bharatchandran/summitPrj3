@@ -3,21 +3,19 @@
 {% load tailwind_filters %}
 {% block content %}
 
-<div class="col-start-1 col-span-2 ml-5 mt-10">
-    <h1 class="ml-10 mt-10 text-7xl font-bold  capitalize leading-loose ">Are you sure you want to delete <span class="underline decoration-solid" >{{ object.name }}</span>?</h1>
+<div class="col-start-2 col-span-2 ml-5 mt-10">
+    <h1 class="ml-10 mt-10 text-7xl font-bold  capitalize leading-loose ">Are you sure you want to delete<br><span class="underline italic decoration-solid" >{{ object.name }}</span>?</h1>
 </div>
-<!-- <h1 class="text-5xl font-bold text-center text-black m-10" >Delete Group</h1> -->
-<div class="col-start-3 col-span-2 mt-10 flex flex-col items-center justify-center">
+<div class="col-start-4 col-span-3 mt-10 flex flex-col justify-center">
     <form action="" method="POST">
         {% csrf_token %}
         {{ form|crispy}}
         <div class="mt-6">
-            <input type="submit" value="Delete" class=" justify-self-center btn btn-error btn-wide m-6 ">
-            <a class="justify-self-center btn btn-wide btn-warning m-6" href="{% url 'group_list' object.id %}">Cancel</a>
+            <input type="submit" value="Delete" class="btn btn-lg btn-error btn-wide m-6 ">
+            <a class="btn btn-lg btn-wide btn-warning m-6" href="{% url 'group_list' object.id %}">Cancel</a>
         </div>
 
     </form>
 </div>
-
 
 {% endblock %}
