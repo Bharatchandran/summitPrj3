@@ -11,7 +11,7 @@
     <div class="row-span-4 flex flex-col">
         <h1>Interest List</h1>
         {%for interest in interests %}
-        <a href="">{{interest.name}}</a>
+        <a href="{%url 'group_list' interest.id%}">{{interest.name}}</a>
         {%endfor%}
     </div>
 </div>
