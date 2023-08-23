@@ -1,4 +1,6 @@
 {% extends 'base.html'%}
+{% load crispy_forms_tags %}
+{% load tailwind_filters %}
 {% block content%}
 <div class="col-span-2">
     <h1 class="text-5xl">hello</h1>
@@ -18,7 +20,7 @@
     <div>
         <form action="{% url 'topic_create' group.id %}" method="POST">
             {% csrf_token %}
-            {{ topic_form.as_p }}
+            {{ topic_form|crispy }}
             <input type="submit" value="Submit" class="btn">
         </form>
     </div>
@@ -28,7 +30,7 @@
             <div>
                 <form action="{% url 'post_create' group.id topic.id %}" enctype="multipart/form-data" method="POST" >
                     {% csrf_token %}
-                    {{ post_form.as_p }}
+                    {{ post_form|crispy }}
                     <input type="file" name="photo-file">
                     <input type="submit" value="Submit" class="btn">
                 </form>

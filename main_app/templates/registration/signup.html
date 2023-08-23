@@ -1,4 +1,6 @@
 {% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% load tailwind_filters %}
 {%  block content %}
 <h1>Sign Up</h1>
 
@@ -7,7 +9,7 @@
 
 <form method="POST" action="{% url 'signup' %}">
     {% csrf_token %}
-    {{ form.as_p }}
+    {{ form|crispy}}
     <button type="submit" class="btn">Sign up</button>
 </form>
 {% endblock%}

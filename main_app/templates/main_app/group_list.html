@@ -33,14 +33,14 @@
         <h1>{{ group.id }}</h1>
         <a href="{% url 'group_detail' group.id %}">
 
-            <div class="card w-96 glass flex-grow" ">
+            <div class="card w-96 glass flex-grow" >
                 <div class="card-body items-center text-center mb-3">
                     <span class="card-title">{{ group.name }}</span>
                 </div>
             </div>
             <div class="space-x-1 ">
-                <a class="btn btn-neutral mt-3" href="{%url 'group_update' interest_id %}">Edit </a>
-                <a class="btn btn-neutral" href="{%url 'group_delete' interest_id %}">Delete </a>
+                <a class="btn btn-neutral mt-3" href="{%url 'group_update' group.id %}">Edit </a>
+                <a class="btn btn-neutral" href="{%url 'group_delete' group.id %}">Delete </a>
             </div>
         </a>
         {% endfor %}

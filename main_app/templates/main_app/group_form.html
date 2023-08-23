@@ -1,4 +1,6 @@
 {% extends 'base.html'%}
+{% load crispy_forms_tags %}
+{% load tailwind_filters %}
 {% block content %}
 
     {% if object%}
@@ -6,11 +8,10 @@
     {% else %}
         <h1>Create Group</h1>
     {% endif %}
-
     <form action="" method="POST">
         {% csrf_token %}
         <table>
-        {{form.as_table}}
+        {{form|crispy}}
         </table>
         <input type="submit" value="Submit">
     </form>
