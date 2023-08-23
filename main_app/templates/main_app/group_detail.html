@@ -29,25 +29,17 @@
 <div class="col-span-4">
     <div class="card">
         <div class="card-content">
-            <h3 class="card-title">{{ group.name }}</h3>
+            <h3 class="card-title uppercase">{{ group.name }}</h3>
         </div>
         <div class="card-action">
             <a href="{% url 'group_update' group.id %}">Edit</a>
             <a href="{% url 'group_delete' group.id %}">Delete</a>
         </div>
-    </div>
-    <!-- Topic form -->
-    <div>
-        <form action="{% url 'topic_create' group.id %}" method="POST">
-            {% csrf_token %}
-            {{ topic_form|crispy }}
-            <input type="submit" value="Submit" class="btn">
-        </form>
-    </div>
+    </div><br>
     <div>
         {% for topic in topics %}
             <p class="text-2xl">Topics:</p>
-            <h2>"{{ topic.name }}"</h2>
+            <h2>"<a href="{% url 'topic_detail' topic.id %}">{{topic.name}}</a>"</h2>
             <div>
                 <form action="{% url 'post_create' group.id topic.id %}" enctype="multipart/form-data" method="POST" >
                     {% csrf_token %}

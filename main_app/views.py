@@ -183,7 +183,7 @@ def post_create(request, group_id, topic_id):
                 print('An error occurred uploading file to S3')
                 print(e)
         new_post.save()
-    return redirect('group_detail', group_id=group_id)
+    return redirect('topic_detail', topic_id)
 
 
 class PostUpdate(LoginRequiredMixin, UpdateView):
