@@ -2,14 +2,20 @@
 {% load crispy_forms_tags %}
 {% load tailwind_filters %}
 {%  block content %}
-<h1>Sign Up</h1>
 
-<h4>Summit: Where Bytes and Banter Combine </h4>
-<p class="red-text">{{error_message}}</p>
+<div class="col-start-1 col-span-2">
+    <h4 class="ml-10 mt-10 text-4xl font-bold">Where Bytes and Banter Combine </h4>
+    <h1 class="ml-10 mt-10 text-5xl font-bold leading-loose">Sign Up</h1>
+        
+    <p class="red-text">{{error_message}}</p>
+</div>
 
-<form method="POST" action="{% url 'signup' %}">
-    {% csrf_token %}
-    {{ form|crispy}}
-    <button type="submit" class="btn">Sign up</button>
-</form>
+<div class="col-start-3 col-span-2 mt-10 ">
+    <form method="POST" action="{% url 'signup' %}">
+        {% csrf_token %}
+        {{ form|crispy}}
+        <button type="submit" class="btn btn-wide btn-outline btn-success text-black">Sign up</button>
+    </form>
+
+</div>
 {% endblock%}
