@@ -81,7 +81,7 @@ def group_detail(request, group_id):
     topic_form = TopicForm()
     post_form = PostForm()
     topics = group.topic_set.all()
-    
+    user_id = request.user.id
 
     def user_like_post(self):
         print(self.user.id)
@@ -92,6 +92,7 @@ def group_detail(request, group_id):
         'topic_form': topic_form,
         'topics': topics,
         'post_form': post_form,
+        'user_id': user_id
     })
 
 
@@ -212,6 +213,10 @@ def topic_detail(request, topic_id):
     topic_form = TopicForm()
     post_form = PostForm()
     group = topic.group
+    user_id = request.user.id
+
+    
+    likes = Like.objects.all().filter(user_id = user_id)
     
     def user_like_post(self):
         print(self.user.id)
@@ -222,6 +227,8 @@ def topic_detail(request, topic_id):
         'topic_form': topic_form,
         'post_form': post_form,
         'topic': topic,
+        'user_id': user_id,
+        'likes': likes
     })
 
 def post_create(request, group_id, topic_id):
