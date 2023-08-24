@@ -3,9 +3,10 @@
 {% load tailwind_filters %}
 {% block content%}
 
-<div class="col-start-3 col-span-3 mt-20 " >
+<div class="col-start-2 col-span-8 flex items-center justify-center mb-40 mr-20">
+    <div class="col-start-2 col-span-3 mr-5 max-w-xl">
     <h1 class="ml-10 p-2 mt-10 text-4xl italic leading-loose">Peak Your Programming Potential</h1> 
-    <h1 class="ml-10 mt-10 text-8xl font-bold leading-loose">SIGN IN</h1>
+    <h1 class="ml-10 mt-[-75px] text-8xl font-bold leading-loose">SIGN IN</h1>
 </div>
 <div class="col-start-7 col-span-3 flex flex-col justify-center">
     <form action="{% url 'login' %}" method="POST">
@@ -15,6 +16,7 @@
         <button type="submit" class="btn btn-wide btn-outline btn-success text-black">Log In</button>
     </form>
 </div>    
+</div>
 
 
 {% endblock%}

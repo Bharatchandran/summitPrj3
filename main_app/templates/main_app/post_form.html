@@ -4,23 +4,22 @@
 {% block content %}
 
 
-<div class="col-start-2 col-span-2 mr-5">
+<div class="col-start-2 col-span-8 flex items-center justify-center mb-40 mr-20">
+    <div class="col-start-2 col-span-3 mr-5 max-w-xl">
     {% if object%}
-        <h1 class="ml-10 mt-10 text-8xl font-bold leading-loose">Edit Post</h1>
-    {% else %}
-        <h1 class="ml-10 mt-10 text-8xl font-bold leading-loose">Create Post</h1>
+        <h1  class="ml-10 leading-none mb-10  text-7xl font-bold leading-loose">Edit <span class="text-7xl underline italic leading-loose font-bold text-center text-center m-10 ml-0 text-transparent text-4xl bg-clip-text bg-gradient-to-r to-emerald-600 from-sky-400">{{ object.name }}</span></h1>
+    
     {% endif %}
 </div>
-
-<div class="col-start-4 col-span-2">
-    <form class="mt-10 text-xl" action="" method="POST">
+<div class="col-start-6 col-span-2 flex flex-col mb-20">
+    <form class=" text-xl mt-10" action="" method="POST">
         {% csrf_token %}
         <table>
-            {{form|crispy}}
+        {{form|crispy}}
         </table>
-        <input class="btn btn-lg btn-wide btn-outline btn-success mt-5" type="submit" value="Submit">
+        <input class="btn btn-lg btn-wide btn-outline btn-success text-black mt-5" type="submit" value="Submit">
     </form>
 </div>
-
+</div>
 
 {% endblock%}
