@@ -10,6 +10,7 @@ Summit is a web application designed to allow likeminded people to discuss topic
 - [Relationship Diagrams](#diagrams)
 - [Screenshots](#screenshots)
 - [Technology](#tech-used)
+- [Reviews](#review)
 
 <a name="features"></a>
 ### Features
@@ -44,7 +45,7 @@ Topic and Post models have a 1:M relationship
 
 
 <a name="screenshots"></a>
-# Screenshots
+### Screenshots
 ![Home Page]() <br>
 ![Log In Page]() <br>
 ![Interest Page]() <br>
@@ -53,7 +54,7 @@ Topic and Post models have a 1:M relationship
 
 
 <a name="tech-used"></a>
-# Technologies Used
+### Technologies Used
 * HTML & EJS templates
 * Tailwind CSS
 * Python
@@ -61,4 +62,15 @@ Topic and Post models have a 1:M relationship
 * AWS
 * Git
 * Heroku
+
+<a name="review"></a>
+### Personal Reviews
+Bharat:
+""
+
+Nick:
+""
+
+Toby:
+""
 
