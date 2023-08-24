@@ -15,22 +15,6 @@
     <header class="relative mb-20">
         <div class="navbar fixed top-0 z-40 bg-neutral text-neutral-content">
             <div class="navbar-start flex items-center space-x-4">
-                <div class="dropdown ">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
-                    </label>
-                    <ul tabindex="0" class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 text-black rounded-box w-52">
-                        <li><a href="">About</a></li>
-                        {% if user.is_authenticated %}
-                            <li><a href="{%url 'interest_list'%}">Interests</a></li>
-                            <li><a href="">Groups</a></li>
-                        <li><a href="">Profile</a></li>  
-                        <li><a href="{%url 'logout' %}">Log out </a></li>
-                        {% else %}
-                            <li><a href="">Sign Up</a></li>
-                            <li><a href="{%url 'login' %}">Log In </a></li>
-                        {% endif%} 
-                    </ul>
-                </div>
                 <a class="btn btn-ghost normal-case text-xl" href="{%url 'home'%}">SUMMIT</a>
             </div>
             <div class="navbar-center hidden lg:flex">

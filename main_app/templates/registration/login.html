@@ -3,13 +3,11 @@
 {% load tailwind_filters %}
 {% block content%}
 
-
-<div class="col-start-3 col-span-2">
+<div class="col-start-3 col-span-3 mt-20 " >
     <h1 class="ml-10 p-2 mt-10 text-4xl italic leading-loose">Peak Your Programming Potential</h1> 
     <h1 class="ml-10 mt-10 text-8xl font-bold leading-loose">SIGN IN</h1>
 </div>
-
-<div class="col-start-6 col-span-2 mt-10 flex flex-col justify-center">
+<div class="col-start-7 col-span-3 flex flex-col justify-center">
     <form action="{% url 'login' %}" method="POST">
         {% csrf_token %}
         {{form|crispy}}
