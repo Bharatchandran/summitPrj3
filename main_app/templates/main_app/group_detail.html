@@ -2,9 +2,9 @@
 {% load crispy_forms_tags %}
 {% load tailwind_filters %}
 {% block content%}
-<div class="col-span-2 mt-5 ml-5">
-    <div class="flex flex-col gap-5">
-        <div class="row-span-2">
+<div class=" hidden  lg:block xl:col-span-2 col-span-2 mt-5 ml-5">
+    <div class="flex flex-col gap-5 sticky top-20 bottom-0 left-3">
+        <div class="row-span-2 min-w-fit ">
             <div class="w-full p-4 text-center bg-white border border-gray-200 rounded-lg shadow sm:p-8  dark:bg-gray-800 dark:border-gray-700">
                     <h5 class="mb-2 text-5xl font-bold text-gray-900 capitalize dark:text-white">{{ group.name }}</h5>
                     <a class="btn btn-wide btn-sm  m-3 btn-warning" href="{% url 'group_update' group.id %}">Edit</a>
@@ -50,7 +50,7 @@
         </div>
     </div>
 </div>
-<div class="col-start-4 col-span-5">
+<div class="col-start-2 col-end-10 ml-5  lg:col-start-4 xl:col-end-9">
     <div class="max-w-4xl">
         
         <form class="m-10 mr-0 flex flex-col" action="{% url 'topic_create' group.id %}" enctype="multipart/form-data" method="POST" >

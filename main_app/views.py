@@ -256,15 +256,24 @@ class PostUpdate(LoginRequiredMixin, UpdateView):
     model = Post
     fields = ['content']
 
+    def get_success_url(self):
+        post = self.get_object()
+        topic_id =post.topic_id
+        group_id = post.topic.group_id
+        success_url = reverse_lazy('topic_detail', kwargs={
+                                   'topic_id': topic_id})
+        return success_url
+
 
 class PostDelete(LoginRequiredMixin, DeleteView):
     model = Post
 
     def get_success_url(self):
         post = self.get_object()
+        topic_id =post.topic_id
         group_id = post.topic.group_id
-        success_url = reverse_lazy('group_detail', kwargs={
-                                   'group_id': group_id})
+        success_url = reverse_lazy('topic_detail', kwargs={
+                                   'topic_id': topic_id})
         return success_url
 
 
@@ -274,11 +283,12 @@ def add_member_to_group(request,interest_id,group_id):
 
 def create_like(request, group_id, post_id):
     post = Post.objects.get(id=post_id)
+    topic_id = post.topic_id
     like = post.like_set.filter(user=request.user)
     print(like)
     if len(like) == 0:
         Like.objects.create(post_id=post_id, user_id= request.user.id )
-    return redirect('group_detail', group_id=group_id)
+    return redirect('topic_detail', topic_id=topic_id)
 
 
 def signup(request):

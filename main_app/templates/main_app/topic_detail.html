@@ -2,9 +2,9 @@
 {% load crispy_forms_tags %}
 {% load tailwind_filters %}
 {% block content%}
-<div class="col-span-2 mt-5 ml-5">
-    <div class="flex flex-col gap-5">
-        <div class="row-span-2">
+<div class="hidden  lg:block xl:col-span-2 col-span-2 mt-5 ml-5">
+    <div class="flex flex-col gap-5 sticky top-20 bottom-0 left-3">
+        <div class="row-span-2 min-w-fit">
             <div class="w-full p-4 text-center bg-white border border-gray-200 rounded-lg shadow sm:p-8  dark:bg-gray-800 dark:border-gray-700">
                     <h5 class="mb-2 text-5xl font-bold text-gray-900 capitalize dark:text-white"><a href="{% url 'group_detail' group.id %}"><span class="text-3xl">Current Group:</span><br>{{ group.name }}</a></h5>
                     <a class="btn btn-wide btn-sm  m-3 btn-warning" href="{% url 'group_update' group.id %}">Edit</a>
@@ -42,7 +42,7 @@
         </div>
     </div>
 </div>
-<div class="col-start-4 col-span-4">
+<div class="col-start-2 col-end-10 ml-10  lg:col-start-4 xl:col-end-9">
     <div class="card mt-10">
         <h5 class="mb-5 text-5xl font-bold text-gray-900 capitalize dark:text-white">{{ topic.name }}</h5>
     </div>
@@ -75,8 +75,9 @@
         <p class="card-title uppercase mb-10 mt-10">Browse Posts:</p>
         {% for post in topic.post_set.all %}
             <div class="max-w-4xl h-120 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 relative mb-4">
-                <div class="absolute top-0 right-0">
-                    <div class="dropdown dropdown-end absolute right-0 top-0 ">
+                
+                <div class=" absolute right-0 top-0 z-40">
+                    <div class="dropdown dropdown-end ">
                         <label tabindex="0" class="btn bg-white border-0  dark:bg-gray-800 m-1">
                             <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 3">
                                 <path d="M2 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Zm6.041 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM14 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Z"/>
