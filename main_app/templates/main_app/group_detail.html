@@ -69,8 +69,6 @@
                 {% for post in topic.post_set.all %}
                     <p>{{post.content}}</p>
                     <div>
-                        <img src="{{post.image_url}}">
-                        <h1>{{post.image_url}}</h1>
                         <h1>{{post.user}}</h1>
                         <form  action="{% url 'create_like' group.id post.id%}" method="POST">
                             {%csrf_token%}

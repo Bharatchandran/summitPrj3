@@ -187,12 +187,30 @@ class TopicDelete(LoginRequiredMixin, DeleteView):
                                    'group_id': group_id})
         return success_url
 
+# def topic_detail(request, topic_id):
+#     group = Group.objects.get()
+#     topic = Topic.objects.get(id=topic_id)
+#     topic_form = TopicForm()
+#     post_form = PostForm()
+#     topics = group.topic_set.all()
+
+#     def user_like_post(self):
+#         print(self.user.id)
+#         return self.like_set.get(user_id = self.user.id)
+
+#     return render(request, 'main_app/topic_detail.html', {
+#         'group': group,
+#         'topic_form': topic_form,
+#         'topics': topics,
+#         'post_form': post_form,
+#         'topic': topic,
+#     })
+
 def topic_detail(request, topic_id):
-    group = Group.objects.get()
     topic = Topic.objects.get(id=topic_id)
     topic_form = TopicForm()
     post_form = PostForm()
-    topics = group.topic_set.all()
+    group = topic.group
 
     def user_like_post(self):
         print(self.user.id)
@@ -201,7 +219,6 @@ def topic_detail(request, topic_id):
     return render(request, 'main_app/topic_detail.html', {
         'group': group,
         'topic_form': topic_form,
-        'topics': topics,
         'post_form': post_form,
         'topic': topic,
     })

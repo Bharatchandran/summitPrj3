@@ -29,34 +29,95 @@
 </div>
 
 <div class="col-span-4">
-    <div class="card">
-        <div class="card-content">
-            <h3 class="card-title uppercase">{{ topic.name }}</h3>
-        </div>
+    <div class="card mt-10">
+        <!-- ++++ -->
+
+    <h5 class="mb-4 text-4xl font-bold text-gray-900 dark:text-white">Topic: {{ topic.name }}</h5>
+  
+
+        <!-- ++++ -->
+        
     </div>
-    <div>
-        <br><p>Add a Post:</p>
+    <div class="max-w-4xl">
+        
+        <!-- ==== -->
+
         <form action="{% url 'post_create' group.id topic.id %}" enctype="multipart/form-data" method="POST">
             {% csrf_token %}
-            {{ post_form|crispy }}
-            <input type="file" name="photo-file">
-            <input type="submit" value="Submit" class="btn">
-        </form><br>
+
+            <div class="w-full mb-4 border border-gray-200 rounded-lg  bg-gray-50 dark:bg-gray-700 dark:border-gray-600">
+                <div class="px-4 py-2 bg-white rounded-t-lg dark:bg-gray-800">
+                    <label for="comment" class="sr-only">Your comment</label>
+                    <textarea id="comment" name="content" rows="3" class="w-full px-0 text-sm text-gray-900 bg-white border-0 dark:bg-gray-800 focus:ring-0 dark:text-white dark:placeholder-gray-400" placeholder="Write a comment..." required></textarea>
+                </div>
+                <div class="flex items-center justify-between px-3 py-2 border-t dark:border-gray-600">
+                    <button type="submit" class="inline-flex items-center py-2.5 px-4 text-xs font-medium text-center text-white bg-blue-700 rounded-lg focus:ring-4 focus:ring-blue-200 dark:focus:ring-blue-900 hover:bg-blue-800">
+                        Post comment
+                    </button>
+                    <div class="flex pl-0 space-x-1 sm:pl-2">
+                        <input class="block w-26  mb-5 text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" id="default_size" type="file" name="photo-file" >
+                    </div>
+                </div>
+            </div>
+         </form>
+         
+         
+
+        <!-- ==== -->
     </div>
     <div>
-        <p class="card-title uppercase">Browse Posts:</p>
+        <p class="card-title uppercase mb-10 mt-10">Browse Posts:</p>
         {% for post in topic.post_set.all %}
-            <p>{{post.content}}</p>
-            <img src="{{post.image_url}}">
-            <h1>{{post.image_url}}</h1>
-            <h1>{{post.user}}</h1>
-            <form  action="{% url 'create_like' group.id post.id%}" method="POST">
-                {%csrf_token%}
-                <button type="submit">like</button>
-            </form>
-            <p>Like: {{post.like_set.count}}</p>
-            <a href="{% url 'post_update' post.id %}">Edit</a>
-            <a href="{% url 'post_delete' post.id %}">Delete</a>
+            
+
+
+
+            <!-- ==== -->
+
+
+            <div class="max-w-4xl h-120 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 relative mb-4">
+                <div class="absolute top-0 right-0">
+                    <div class="dropdown dropdown-end absolute right-0 top-0 ">
+                        <label tabindex="0" class="btn bg-white border-0  dark:bg-gray-800 m-1"><svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 3">
+                          <path d="M2 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Zm6.041 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM14 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Z"/>
+                        </svg></label>
+                        <ul tabindex="0" class="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">
+                          <li>
+                            <a href="{% url 'post_update' post.id %}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Edit</a>
+                        </li>
+                        
+                        <li>
+                            <a href="{% url 'post_delete' post.id %}" class="block px-4 py-2 text-sm text-red-600 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Delete</a>
+                        </li>
+                        </ul>
+                      </div>
+                </div>
+                <div class="p-5 flex flex-col relative ">
+                    <div class="flex p-2 items-center absolute top-0 left-0">
+                        <div class="w-10 h-10 rounded-full bg-black flex justify-center items-center">U</div>
+                        <div class="ml-2"><p>{{post.user}}</p></div>
+                    </div>
+                    
+                    <p class="mb-3 ml-4 mt-6 relative top-3 font-normal text-gray-700 dark:text-gray-400">{{post.content}}</p>
+                    
+                </div>
+                <img class="rounded-t-lg  " src="{{post.image_url}}" alt="" />
+                <div class="h-10 flex items-center p-4">
+                    <div>
+                    <form  action="{% url 'create_like' group.id post.id%}" method="POST">
+                        {%csrf_token%}
+                        <button type="submit"><svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 21 19">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 4C5.5-1.5-1.5 5.5 4 11l7 7 7-7c5.458-5.458-1.542-12.458-7-7Z"/>
+                          </svg></button>
+                    </form>
+                </div>
+                    <p class="p-4">{{post.like_set.count}}</p>
+                </div>
+            </div>
+            
+
+            <!-- ==== -->
+
         {%endfor%}
     </div>
 </div>
