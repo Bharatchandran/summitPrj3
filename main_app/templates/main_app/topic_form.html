@@ -4,7 +4,7 @@
 {% block content %}
 
 
-<div class="col-start-3 col-span-2 mr-5">
+<!-- <div class="col-start-3 col-span-2 mr-5">
     {% if object%}
         <h1 class="ml-10 mt-10 text-8xl font-bold leading-loose">Edit<br><span class="underline italic decoration-solid">{{ object.name }}</span></h1>
     {% else %}
@@ -20,7 +20,26 @@
         </table>
         <input class="btn btn-lg btn-wide btn-outline btn-success mt-5" type="submit" value="Submit">
     </form>
-</div>
+</div> -->
 
+<div class="col-start-2 col-span-8 flex items-center justify-center mb-40 mr-20">
+    <div class="col-start-2 col-span-3 mr-8 max-w-2xl">
+    {% if object%}
+        <h1 class="ml-10 mt-10 leading-none text-8xl font-bold leading-loose">Edit<br><span class="underline italic decoration-solid">{{ object.name }}</span></h1>
+    {% else %}
+        <h1 class="ml-10 mt-10 text-7xl font-bold leading-loose">Edit Topic</h1>
+    {% endif %}
+</div>
+    
+<div class="col-start-6 col-span-2 mt-10 flex flex-col justify-center">
+    <form class="mt-10 text-xl" action="" method="POST">
+        {% csrf_token %}
+        <table>
+            {{form|crispy}}
+        </table>
+        <input class="btn btn-lg btn-wide btn-outline btn-success mt-5" type="submit" value="Submit">
+    </form>
+</div>
+</div>
 
 {% endblock%}
