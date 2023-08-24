@@ -40,7 +40,7 @@ class InterestList(LoginRequiredMixin, ListView):
 
 class InterestCreate(LoginRequiredMixin, CreateView):
     model = Interest
-    fields = ['name']
+    fields = ['name', 'description']
     # form.owner = self.request.user
 
     def form_valid(self, form):
@@ -81,6 +81,7 @@ def group_detail(request, group_id):
     topic_form = TopicForm()
     post_form = PostForm()
     topics = group.topic_set.all()
+    
 
     def user_like_post(self):
         print(self.user.id)
@@ -211,7 +212,7 @@ def topic_detail(request, topic_id):
     topic_form = TopicForm()
     post_form = PostForm()
     group = topic.group
-
+    
     def user_like_post(self):
         print(self.user.id)
         return self.like_set.get(user_id = self.user.id)

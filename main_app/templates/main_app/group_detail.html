@@ -52,32 +52,28 @@
 </div>
 <!-- topic input form -->
 <div class="col-start-4 col-span-5">
-    <div>
+    <div class="max-w-4xl">
         
-        <form class="m-10" action="{% url 'topic_create' group.id %}" enctype="multipart/form-data" method="POST" >
+        <form class="m-10 mr-0 flex flex-col" action="{% url 'topic_create' group.id %}" enctype="multipart/form-data" method="POST" >
             {% csrf_token %}
-            {{ topic_form|crispy }}
-            <input class="btn btn-wide btn-outline btn-success" type="submit" value="Submit" class="btn">
+            <!-- {{ topic_form|crispy }} -->
+            <label for="default-input" class="block mb-2 text-2xl font-medium text-gray-900 dark:text-white">Topic:</label>
+
+            <input type="text" name="name" id="default-input" class="bg-gray-50 mb-4 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+            <input class="btn btn-wide self-end btn-outline btn-success" type="submit" value="Submit" class="btn">
         </form>
     </div>
     <!-- topic submit input filed above  -->
     {% for topic in topics %}
-        <div class="w-full p-4 text-center bg-white border border-gray-200 rounded-lg shadow sm:p-8 ml-10 mb-5 dark:bg-gray-800 dark:border-gray-700 relative ">
-            <div>
-            <h2 class="mb-2 text-3xl font-bold text-gray-900 dark:text-white">"<a href="{% url 'topic_detail' topic.id %}">{{topic.name}}</a>"</h2>
-            
-                {% for post in topic.post_set.all %}
-                    <p>{{post.content}}</p>
-                    <div>
-                        <h1>{{post.user}}</h1>
-                        <form  action="{% url 'create_like' group.id post.id%}" method="POST">
-                            {%csrf_token%}
-                            <button type="submit">like</button>
-                        </form>
-                        <p>Like: {{post.like_set.count}}</p>
-                    </div>
-                {%endfor%}
+        <div class="max-w-4xl p-4 text-center bg-white border border-gray-200 rounded-lg shadow sm:p-8 ml-10 mb-5 dark:bg-gray-800 dark:border-gray-700  bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700 relative ">
+            <a href="{% url 'topic_detail' topic.id %}">
+            <h2 class="mb-2 text-3xl font-bold text-gray-900 dark:text-white">"{{topic.name}}"</h2>
+                  
+                
+               
                 <h1 class="text-sm italic font-bold">{{topic.createdAt}}</h1>
+                
+                </a>
                 <div class="flex flex-col h-5/6 justify-between absolute top-0 right-0">
                     <div class="dropdown dropdown-end ">
                         <label tabindex="0" class="btn bg-white  dark:bg-gray-800 border-0 bg- m-1"><svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 3">
@@ -93,8 +89,6 @@
                         </ul>
                     </div>
                 </div>
-                </div>
-                
             </div> 
     {% endfor %}
         </div> 

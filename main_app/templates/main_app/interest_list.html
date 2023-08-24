@@ -65,24 +65,20 @@
         </a>
     </div>
     <div class="flex flex-col space-x-4 gap-4">
-        <div class=" grid md:grid-col-1  xl:grid-col-1 gap-4">
+        <div class=" grid md:grid-cols-2  xl:grid-cols-2 gap-4">
             {% if interest_list  %}
                     {% for interest in interest_list %}
-                        <div class="flex flex-col items-center bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700 h-52 relative">
-                                <div class="flex ml-10 flex-col justify-between p-4 leading-normal">
-                                        <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{{interest.name}}</h5>
-                                        <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order.</p>
-                                        <div class="w-full flex justify-end ">
-                                                <a href="{%url 'group_list' interest.id%}" class=" inline-flex justify-between items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg transition ease-in-out delay-150 bg-gradient-to-r from-green-400 to-blue-500 hover:from-pink-500 hover:to-yellow-500 w-24 hover:-translate-y-1 hover:scale-110 duration-150 w-24">next
-                                                    <svg class="w-3.5 h-3.5 ml-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
-                                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
-                                                    </svg>
-                                                </a>
-                                        </div>
+                        <div class="flex flex-col items-center bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700 h-fit  relative">
+                          <a href="{%url 'group_list' interest.id%}" class="h-full w-full">
+                                <div class="flex p-6 flex-col  p-4 leading-normal w-full">
+                                        <h5 class=" text-4xl font-bold tracking-tight text-gray-900 dark:text-white">{{interest.name}}</h5>
+                                        <div class="h-32 flex items-center">
+                                        <p class="mb-3 mt-4 font-normal text-gray-700 dark:text-gray-400">{{interest.description}}</p>
+                                      </div>
                                 </div>
-                                <div class="flex flex-col h-5/6 justify-between ">
+                              </a>
                                         <div class="dropdown dropdown-end absolute right-0 top-0 ">
-                                                <label tabindex="0" class="btn bg-white  dark:bg-gray-800 border-0 bg- m-1"><svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 3">
+                                                <label tabindex="0" class="btn bg-white  dark:bg-gray-800  border-0 bg- m-1"><svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 3">
                                                 <path d="M2 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Zm6.041 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM14 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Z"/>
                                                 </svg></label>
                                                 <ul tabindex="0" class="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">
@@ -95,7 +91,6 @@
                                                 </li>
                                                 </ul>
                                         </div>
-                                </div>       
                         </div>
                     {% endfor %}
                 </div>
