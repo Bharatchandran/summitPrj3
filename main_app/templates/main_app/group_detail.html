@@ -62,23 +62,10 @@
     </div>
     <!-- topic submit input filed above  -->
     {% for topic in topics %}
-        <div class="w-full p-4 text-center bg-white border border-gray-200 rounded-lg shadow sm:p-8 ml-10 mb-5 dark:bg-gray-800 dark:border-gray-700">
+        <div class="w-full p-4 text-center bg-white border border-gray-200 rounded-lg shadow sm:p-8 ml-10 mb-5 dark:bg-gray-800 dark:border-gray-700 relative ">
+            <div>
             <h2 class="mb-2 text-3xl font-bold text-gray-900 dark:text-white">"<a href="{% url 'topic_detail' topic.id %}">{{topic.name}}</a>"</h2>
-            <div class="flex flex-col h-5/6 justify-between">
-                <div class="dropdown dropdown-end">
-                    <label tabindex="0" class="btn bg-white  dark:bg-gray-800 border-0 bg- m-1"><svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 3">
-                        <path d="M2 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Zm6.041 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM14 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Z"/>
-                    </svg></label>
-                    <ul tabindex="0" class="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">
-                        <li>
-                            <a href="{% url 'topic_update' topic.id %}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Edit</a>
-                        </li>
-                        <li>
-                            <a href="{% url 'topic_delete' topic.id %}" class="block px-4 py-2 text-sm text-red-600 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Delete</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
+            
                 {% for post in topic.post_set.all %}
                     <p>{{post.content}}</p>
                     <div>
@@ -93,6 +80,23 @@
                     </div>
                 {%endfor%}
                 <h1 class="text-sm italic font-bold">{{topic.createdAt}}</h1>
+                <div class="flex flex-col h-5/6 justify-between absolute top-0 right-0">
+                    <div class="dropdown dropdown-end ">
+                        <label tabindex="0" class="btn bg-white  dark:bg-gray-800 border-0 bg- m-1"><svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 3">
+                            <path d="M2 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Zm6.041 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM14 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Z"/>
+                        </svg></label>
+                        <ul tabindex="0" class="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">
+                            <li>
+                                <a href="{% url 'topic_update' topic.id %}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Edit</a>
+                            </li>
+                            <li>
+                                <a href="{% url 'topic_delete' topic.id %}" class="block px-4 py-2 text-sm text-red-600 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Delete</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                </div>
+                
             </div> 
     {% endfor %}
         </div> 
