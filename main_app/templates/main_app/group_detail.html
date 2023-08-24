@@ -50,7 +50,6 @@
         </div>
     </div>
 </div>
-<!-- topic input form -->
 <div class="col-start-4 col-span-5">
     <div class="max-w-4xl">
         
@@ -58,19 +57,20 @@
             {% csrf_token %}
             <!-- {{ topic_form|crispy }} -->
             <label for="default-input" class="block mb-2 text-2xl font-medium text-gray-900 dark:text-white">Topic:</label>
-
-            <input type="text" name="name" id="default-input" class="bg-gray-50 mb-4 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-            <input class="btn btn-wide self-end btn-outline btn-success" type="submit" value="Submit" class="btn">
+            
+            <input type="text" name="name" id="default-input" class="bg-gray-50 mb-3 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+            <div class="flex items-center justify-between px-3 py-2 ">
+                <button type="submit" class="inline-flex items-center py-2.5 px-4 text-xs font-medium text-center text-white bg-blue-700 rounded-lg focus:ring-4 focus:ring-blue-200 dark:focus:ring-blue-900 hover:bg-blue-800">
+                    Post Topic
+                </button>
+            </div>
+            <!-- <input class="btn btn-wide self-end btn-outline btn-success" type="submit" value="Submit" class="btn"> -->
         </form>
     </div>
-    <!-- topic submit input filed above  -->
     {% for topic in topics %}
         <div class="max-w-4xl p-4 text-center bg-white border border-gray-200 rounded-lg shadow sm:p-8 ml-10 mb-5 dark:bg-gray-800 dark:border-gray-700  bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700 relative ">
             <a href="{% url 'topic_detail' topic.id %}">
             <h2 class="mb-2 text-3xl font-bold text-gray-900 dark:text-white">"{{topic.name}}"</h2>
-                  
-                
-               
                 <h1 class="text-sm italic font-bold">{{topic.createdAt}}</h1>
                 
                 </a>

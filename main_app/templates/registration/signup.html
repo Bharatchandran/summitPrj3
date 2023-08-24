@@ -5,18 +5,16 @@
 
 <div class="col-start-2 col-span-8 flex items-center justify-center mb-40 mr-20">
     <div class="col-start-2 col-span-3 mr-5 max-w-xl">
-    <h4 class="ml-10 mt-10 italic text-4xl p-2 pb-0">Where Bytes and Banter Combine </h4>
-    <h1 class="ml-10 mt-[-50px] text-8xl font-bold leading-loose">Sign Up!</h1>
-    <p class="red-text">{{error_message}}</p>
+        <h4 class="ml-10 mt-10 italic text-4xl p-2 pb-0">Where Bytes and Banter Combine </h4>
+        <h1 class="ml-10 mt-15 text-8xl font-bold leading-loose">Sign Up!</h1>
+        <p class="red-text">{{error_message}}</p>
+    </div>
+    <div class="col-start-6 col-span-3  flex flex-col justify-center">
+        <form method="POST" action="{% url 'signup' %}">
+            {% csrf_token %}
+            {{ form|crispy}}
+            <button type="submit" class="btn btn-wide btn-outline btn-success text-black">Sign up</button>
+        </form>
+    </div>
 </div>
-
-<div class="col-start-6 col-span-3  flex flex-col justify-center">
-    <form method="POST" action="{% url 'signup' %}">
-        {% csrf_token %}
-        {{ form|crispy}}
-        <button type="submit" class="btn btn-wide btn-outline btn-success text-black">Sign up</button>
-    </form>
-</div>
-</div>
-
 {% endblock%}

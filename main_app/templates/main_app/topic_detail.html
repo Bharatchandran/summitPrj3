@@ -75,21 +75,24 @@
         <p class="card-title uppercase mb-10 mt-10">Browse Posts:</p>
         {% for post in topic.post_set.all %}
             <div class="max-w-4xl h-120 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 relative mb-4">
-                <div class="dropdown dropdown-end absolute right-0 top-0 ">
-                    <label tabindex="0" class="btn bg-white  dark:bg-gray-800  border-0 bg- m-1"><svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 3">
-                    <path d="M2 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Zm6.041 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM14 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Z"/>
-                    </svg></label>
-                    <ul tabindex="0" class="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">
-                    <li>
-                        <a href="{%url 'post_update' post.id%}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Edit</a>
-                    </li>
-                    
-                    <li>
-                        <a href="{%url 'post_delete' post.id%}" class="block px-4 py-2 text-sm text-red-600 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Delete</a>
-                    </li>
-                    </ul>
-            </div>
-                <div class="p-5 flex flex-col  ">
+                <div class="absolute top-0 right-0">
+                    <div class="dropdown dropdown-end absolute right-0 top-0 ">
+                        <label tabindex="0" class="btn bg-white border-0  dark:bg-gray-800 m-1">
+                            <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 3">
+                                <path d="M2 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Zm6.041 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM14 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Z"/>
+                            </svg>
+                        </label>
+                        <ul tabindex="0" class="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">
+                            <li>
+                                <a href="{% url 'post_update' post.id %}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Edit</a>
+                            </li>
+                            <li>
+                                <a href="{% url 'post_delete' post.id %}" class="block px-4 py-2 text-sm text-red-600 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Delete</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="p-5 flex flex-col relative ">
                     <div class="flex p-2 items-center absolute top-0 left-0">
                         <div class="w-10 h-10 rounded-full bg-black flex justify-center items-center">U</div>
                         <div class="ml-2"><p>{{post.user}}</p></div>

@@ -8,13 +8,12 @@
     <link href="https://cdn.jsdelivr.net/npm/daisyui@3.5.1/dist/full.css" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.8.1/flowbite.min.js"></script>
-
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="flex flex-col">
     <header class="relative mb-20">
-        <div class="navbar fixed top-0 z-40 bg-neutral text-neutral-content">
-            <div class="navbar-start flex items-center space-x-4">
+        <div class="navbar fixed top-0 z-40 bg-neutral text-neutral-content h-20">
+            <div class="navbar-start flex flex-1 items-center space-x-4">
                 <a class="btn btn-ghost normal-case text-xl" href="{%url 'home'%}">SUMMIT</a>
             </div>
             <div class="navbar-center hidden lg:flex">
@@ -39,7 +38,7 @@
         {% endblock %}
         </div>
     </main>
-    <footer class="footer fixed bottom-0 items-center p-4 bg-neutral text-neutral-content">
+    <footer class="footer items-center p-4 bg-neutral text-neutral-content">
         <div class="items-center grid-flow-col">
         <h3 width="150" height="100" viewBox="0 0 24 24" fill-rule="evenodd" clip-rule="evenodd" class="fill-current text-6xl ">△</h3> 
         <p>Reach A New Summit<br/>Summit © 2023 All right reserved</p>
