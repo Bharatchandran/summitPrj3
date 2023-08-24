@@ -11,12 +11,12 @@
 
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body >
-    <div class="relative">
-    <header class="h-[10vh] sticky top-0 z-40 h-24 w-full">
+<body class="flex flex-col" >
+    
+    <header class="">
         <div class="navbar bg-neutral text-neutral-content">
             <div class="navbar-start flex items-center space-x-4">
-                <div class="dropdown  ">
+                <div class="dropdown ">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
                     </label>
                     <ul tabindex="0" class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 text-black rounded-box w-52">
@@ -50,20 +50,19 @@
             </div>
         </div>
     </header>
-    <main class="w-screen flex-1 flex flex-col">
+    <main class="flex-1 flex flex-col">
         
         <div class="grid grid-cols-10 flex-1 mb-40">
         {% block content%}
         {% endblock %}
         </div>
     </main>
-    <footer class="footer fixed bottom-0 items-center p-4 bg-neutral text-neutral-content ">
+    <footer class="footer items-center p-4 bg-neutral text-neutral-content">
         <div class="items-center grid-flow-col">
         <h3 width="150" height="100" viewBox="0 0 24 24" fill-rule="evenodd" clip-rule="evenodd" class="fill-current text-6xl ">△</h3> 
         <p>Reach A New Summit<br/>Summit © 2023 All right reserved</p>
         </div>
     </footer>
-</div>
 </body>
 </html>
 
