@@ -3,14 +3,14 @@
 {% load tailwind_filters %}
 {% block content %}
 
-<div class="col-start-2 col-span-2 mr-5">
+<div class="col-start-3 col-span-2 mr-5">
     {% if object%}
         <h1 class="ml-10 mt-10 text-8xl font-bold leading-loose">Edit<br><span class="underline italic decoration-solid">{{ object.name }}</span></h1>
     {% else %}
         <h1 class="ml-10 mt-10 text-7xl font-bold leading-loose">Edit Topic</h1>
     {% endif %}
 </div>
-<div class="col-start-4 col-span-2 m-10 ">
+<div class="col-start-6 col-span-2 mt-10 flex flex-col justify-center" ">
     <form class="mt-10 text-xl" action="" method="POST">
         {% csrf_token %}
         <table>
