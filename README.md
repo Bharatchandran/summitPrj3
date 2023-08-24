@@ -1,10 +1,11 @@
-# Summit
+# GA Project 3: Summit
+#### Full-stack Django Appication - Group Project
 
 Summit is a web application designed to allow likeminded people to discuss topics in an open forum. With the ever increasing restrictions on platforms like Reddit and Tumblr, we aimed to create something where people knew their opinions are heard and valued.
 
 **[Visit Summit here!](https://summitdb-84480e3e02b3.herokuapp.com/)**
 
-# Contents
+## Contents
 - [Features](#features)
 - [Technical Aspects](#tech-aspects)
 - [Relationship Diagrams](#diagrams)
@@ -64,13 +65,26 @@ Topic and Post models have a 1:M relationship
 * Heroku
 
 <a name="review"></a>
-### Personal Reviews
-Bharat:
-""
+## Personal Reviews
 
-Nick:
-""
+### Bharat
 
-Toby:
-""
+
+
+----
+
+### Nick
+When it was announced that Project 3 was going to be completed in groups, I was initially nervous due to my previous experience with group assessments at university. However, this time around I can safely say that I enjoyed working within a team. 
+
+The support you receive when working with other developers was invaluable. During my last project, I ran into blockers during the initial stages of the project which slowed me down. However, working together as a team we were able to overcome many individual blockers and make fast progress. We complemented each other's strengths and were not afraid to seek help and learn in areas we lacked confidence in.
+
+Like most new developers, I get easily frustrated when I’m building a project only to be met by a continuous run of errors. In solo projects, I would spend too much time trying to solve one problem, wasting precious time and energy. In this project, my time was accountable to my team members. Procrastinating was out the question,  I either had to solve the bug  or lean on my team mates to move past the issue. As a team, we worked well together. No problem was too small, and we always helped each other. Often, the solution was staring us right in the face, but another set of eyes was needed to see it.
+
+Overall, I was pleasantly surprised by the lack of conflict, both in our code and interpersonally, during this project. We had a goal and a straightforward path to achieving it. All we had to do was focus on the work.
+
+-----
+
+
+### Toby
+
 
