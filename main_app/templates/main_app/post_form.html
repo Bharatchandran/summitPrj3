@@ -3,6 +3,7 @@
 {% load tailwind_filters %}
 {% block content %}
 
+
 <div class="col-start-2 col-span-2 mr-5">
     {% if object%}
         <h1 class="ml-10 mt-10 text-8xl font-bold leading-loose">Edit Post</h1>
@@ -10,14 +11,16 @@
         <h1 class="ml-10 mt-10 text-8xl font-bold leading-loose">Create Post</h1>
     {% endif %}
 </div>
-<div class="col-start-4 col-span-2  ">
+
+<div class="col-start-4 col-span-2">
     <form class="mt-10 text-xl" action="" method="POST">
         {% csrf_token %}
         <table>
-        {{form|crispy}}
+            {{form|crispy}}
         </table>
         <input class="btn btn-lg btn-wide btn-outline btn-success mt-5" type="submit" value="Submit">
     </form>
-
 </div>
+
+
 {% endblock%}

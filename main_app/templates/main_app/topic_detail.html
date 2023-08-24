@@ -3,6 +3,7 @@
 {% load tailwind_filters %}
 {% block content%}
 
+
 <div class="col-span-2">
     <div class="grid grid-rows-6 gap-6">
         <div class="row-span-2">
@@ -11,17 +12,17 @@
         </div>
         <div class="row-span-2">
             <h1 class="text-2xl">Code of Conduct</h1>
-            <p>
-                1. Be civil and respectful to others<br>
-                2. Posts must be related to the interest<br>
-                3. No advertising or marketing<br>
-                4. No hate speech (racism, sexism etc.)
-            </p>
+                <p>
+                    1. Be civil and respectful to others<br>
+                    2. Posts must be related to the interest<br>
+                    3. No advertising or marketing<br>
+                    4. No hate speech (racism, sexism etc.)
+                </p>
         </div>
         <div class="row-span-2 flex flex-col">
             <h1 class="text-2xl">Other Topics in Group</h1>
             {%for topic in topics %}
-            <a href="{% url 'topic_detail' topic.id %}">{{topic.name}}</a>
+                <a href="{% url 'topic_detail' topic.id %}">{{topic.name}}</a>
             {%endfor%}
         </div>
     </div>
@@ -36,30 +37,29 @@
     <div>
         <br><p>Add a Post:</p>
         <form action="{% url 'post_create' group.id topic.id %}" enctype="multipart/form-data" method="POST">
-        {% csrf_token %}
-        {{ post_form|crispy }}
-        <input type="file" name="photo-file">
-        <input type="submit" value="Submit" class="btn">
+            {% csrf_token %}
+            {{ post_form|crispy }}
+            <input type="file" name="photo-file">
+            <input type="submit" value="Submit" class="btn">
         </form><br>
     </div>
     <div>
         <p class="card-title uppercase">Browse Posts:</p>
-        <div>
-            {% for post in topic.post_set.all %}
+        {% for post in topic.post_set.all %}
             <p>{{post.content}}</p>
-        </div>
-        <img src="{{post.image_url}}">
-        <h1>{{post.image_url}}</h1>
-        <h1>{{post.user}}</h1>
-        <form  action="{% url 'create_like' group.id post.id%}" method="POST">
-            {%csrf_token%}
-            <button type="submit">like</button>
-        </form>
-        <p>Like: {{post.like_set.count}}</p>
-        <a href="{% url 'post_update' post.id %}">Edit</a>
-        <a href="{% url 'post_delete' post.id %}">Delete</a>
+            <img src="{{post.image_url}}">
+            <h1>{{post.image_url}}</h1>
+            <h1>{{post.user}}</h1>
+            <form  action="{% url 'create_like' group.id post.id%}" method="POST">
+                {%csrf_token%}
+                <button type="submit">like</button>
+            </form>
+            <p>Like: {{post.like_set.count}}</p>
+            <a href="{% url 'post_update' post.id %}">Edit</a>
+            <a href="{% url 'post_delete' post.id %}">Delete</a>
         {%endfor%}
     </div>
 </div>
+
 
 {% endblock %}

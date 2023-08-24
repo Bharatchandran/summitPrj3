@@ -3,14 +3,16 @@
 {% load tailwind_filters %}
 {% block content %}
 
+
 <div class="col-start-2 col-span-3 mr-5">
     {% if object%}
-        <h1 class="ml-10 mt-10 text-8xl font-bold text-justify leading-loose">Edit <span class="underline italic decoration-solid" >{{ object.name }}</span></h1>
+        <h1 class="ml-10 mt-10 text-8xl font-bold text-justify leading-loose">Edit <span class="underline italic decoration-solid">{{ object.name }}</span></h1>
     {% else %}
         <h1 class="ml-10 mt-10 text-8xl font-bold leading-loose">Create Your Interest</h1>
     {% endif %}
 </div>
-<div class="col-start-6 col-span-2 m-10 ">
+
+<div class="col-start-6 col-span-2 m-10">
     <form class="mt-10 text-xl" action="" method="POST">
         {% csrf_token %}
         <table>
@@ -19,4 +21,6 @@
         <input class="btn btn-lg btn-wide btn-outline btn-success mt-5" type="submit" value="Submit">
     </form>
 </div>
+
+
 {% endblock%}

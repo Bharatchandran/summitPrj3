@@ -1,19 +1,22 @@
-
 {% extends 'base.html'%}
 {% load crispy_forms_tags %}
 {% load tailwind_filters %}
 {% block content%}
 
+
 <div class="col-start-3 col-span-2 ml-5 mt-10">
     <h1 class="ml-10 mt-10 text-7xl font-bold capitalize leading-loose">Create a New Group</h1>
 </div>
-<div class="col-start-3 col-span-2 mt-10 p-10" >
+
+<div class="col-start-3 col-span-2 mt-10 p-10">
     <form action="{% url 'group_create'  interest_id%}" enctype="multipart/form-data" method="POST">
         {%csrf_token%}
         {{group_form|crispy}}
         <label for="">add image</label>
         <input type="file" name="photo-file">
-        <input type="submit" value="Submit" class="btn btn-wide btn-outline btn-success mt-5" >
-
+        <input type="submit" value="Submit" class="btn btn-wide btn-outline btn-success mt-5">
+    </form>
 </div>
+
+
 {% endblock %}
