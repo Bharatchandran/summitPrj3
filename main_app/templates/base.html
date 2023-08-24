@@ -19,7 +19,7 @@
             </div>
             <div class="navbar-center hidden lg:flex">
                 <ul class="menu menu-horizontal px-5">
-                    <li><a href="">About</a></li>
+                    <li><a href="{% url 'about' %}">About</a></li>
                     {% if user.is_authenticated %}
                         <li><a href="{%url 'interest_list'%}">Interests</a></li>
                         <li><a href="{%url 'mygroup_index'%}">MyGroups</a></li>

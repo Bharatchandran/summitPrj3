@@ -70,22 +70,13 @@ class Post(models.Model):
         post = Post.objects.get(id=self.id)
         group = post.topic.group_id
         return reverse('group_detail', kwargs={'group_id': group})
-    
-    # def user_like_post(self):
-    #     print(self.user.id)
-    #     # print(self.like_set.get(user_id = self.user.id),"===")
-    #     return self.like_set.get(user_id = self.user.id)
-            
-        
-    
-# class PostPhoto(models.Model):
-#     url = models.CharField(max_length=200)
-#     post = models.ForeignKey(Post, on_delete=models.CASCADE)
+
 
 class Like(models.Model):
     post = models.ForeignKey(Post, on_delete=models.CASCADE)
     user = models.ForeignKey(User,on_delete=models.CASCADE)
-    
+
+
 class Member(models.Model):
     user = models.ForeignKey(User,on_delete=models.CASCADE)
     group= models.ForeignKey(Group, on_delete=models.CASCADE)
