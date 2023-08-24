@@ -63,7 +63,9 @@ def group_list(request, interest_id):
     interests = Interest.objects.all()
     currentInterest = Interest.objects.get(id=interest_id)
     user_id = request.user.id
-    members = Member.objects.all()
+    members = Member.objects.all().filter(user_id=user_id)
+    # members = Group.objects.member_set.all().filter(user_id=user_id)
+    print(members)
     return render(request, 'main_app/group_list.html', {
         'interest_id': interest_id,
         'groups': groups,
