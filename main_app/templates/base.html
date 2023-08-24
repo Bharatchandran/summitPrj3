@@ -12,8 +12,8 @@
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="flex flex-col">
-    <header class="">
-        <div class="navbar bg-neutral text-neutral-content">
+    <header class="relative mb-20">
+        <div class="navbar fixed top-0 z-40 bg-neutral text-neutral-content">
             <div class="navbar-start flex items-center space-x-4">
                 <div class="dropdown ">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
@@ -55,7 +55,7 @@
         {% endblock %}
         </div>
     </main>
-    <footer class="footer items-center p-4 bg-neutral text-neutral-content">
+    <footer class="footer fixed bottom-0 items-center p-4 bg-neutral text-neutral-content">
         <div class="items-center grid-flow-col">
         <h3 width="150" height="100" viewBox="0 0 24 24" fill-rule="evenodd" clip-rule="evenodd" class="fill-current text-6xl ">△</h3> 
         <p>Reach A New Summit<br/>Summit © 2023 All right reserved</p>

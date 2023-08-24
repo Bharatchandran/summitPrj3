@@ -23,7 +23,11 @@
                             </ul>
                         </div>
                         <div class="mt-10 flex flex-col items-center pb-10">
-                            <img class="w-24 h-24 mb-3 rounded-full shadow-lg" src="/docs/images/people/profile-picture-3.jpg" alt="Bonnie image"/>
+                          {%if el.group.image_url|slice:"0:5" == "https"%}
+                          <img class="w-24 h-24 mb-3 rounded-full shadow-lg" src="{{el.group.image_url}}" alt="Bonnie image"/>
+                          {%else%}
+                          <img class="w-24 h-24 mb-3 rounded-full shadow-lg" src="../../../../static/images/random_group_image/{{el.group.image_url}}" alt="Bonnie image"/>
+                          {%endif%}
                             <h5 class="mb-1 text-xl font-medium text-gray-900 dark:text-white">{{ el.group.name }}</h5>
                             <div class="flex mt-4 space-x-3 md:mt-6">      
                                 <a href="{%url 'group_detail' el.group.id%}" class="inline-flex items-center px-4 py-2 text-sm font-medium text-center text-gray-900 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-700 dark:focus:ring-gray-700">next</a>
