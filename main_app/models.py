@@ -5,9 +5,8 @@ from datetime import datetime
 from django.utils import timezone
 from datetime import date
 import datetime
+
 # Create your models here.
-
-
 class Interest(models.Model):
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
     name = models.CharField(max_length=100)

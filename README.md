@@ -47,10 +47,13 @@ Topic and Post models have a 1:M relationship
 
 <a name="screenshots"></a>
 ### Screenshots
-![Home Page](https://imgur.com/KkJIH4a) <br>
-![Interest Page](https://imgur.com/FJPCajl) <br>
-![Topic Page](https://imgur.com/I5nP4xe)
 
+![Log In Page](/readme_assets/images/Home.png) <br>
+![Home Page](/readme_assets/images/about.png) <br>
+![Interest Page](/readme_assets/images/interest.png) <br>
+![Group View](/readme_assets/images/group.png) <br>
+![Topic View](/readme_assets/images/topiclist.png) <br>
+![Post View](/readme_assets/images/Topic.png)
 
 
 <a name="tech-used"></a>
