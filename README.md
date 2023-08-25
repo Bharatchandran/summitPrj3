@@ -37,8 +37,8 @@ Summit is a web application designed to allow likeminded people to discuss topic
 
 <a name="diagrams"></a>
 ### Relationship Diagram
-![Summit's Relational Diagram](https://lucid.app/lucidchart/8239c4a1-d71c-4a1d-8d63-a7bf82b44b2d/edit?viewport_loc=-239%2C-33%2C2113%2C972%2C0_0&invitationId=inv_a1e80f03-0140-49c3-bbea-017a450fe4b0)<br>
-![Summit Layout Figma](https://www.figma.com/file/fPHAIua7h1JcssuY9xO8ii/Summit?type=design&node-id=0%3A1&mode=design&t=LF2e2iKVNughUG4C-1)
+[Summit's Relational Diagram](https://lucid.app/lucidchart/8239c4a1-d71c-4a1d-8d63-a7bf82b44b2d/edit?viewport_loc=-239%2C-33%2C2113%2C972%2C0_0&invitationId=inv_a1e80f03-0140-49c3-bbea-017a450fe4b0)<br>
+[Summit Layout Figma](https://www.figma.com/file/fPHAIua7h1JcssuY9xO8ii/Summit?type=design&node-id=0%3A1&mode=design&t=LF2e2iKVNughUG4C-1)
 
 Interest and Group models have a 1:M relationship<br>
 Group and Topic models have a 1:M relationship<br>
