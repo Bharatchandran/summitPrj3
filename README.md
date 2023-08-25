@@ -86,5 +86,16 @@ Overall, I was pleasantly surprised by the lack of conflict, both in our code an
 
 
 ### Toby
+Throughout this project, the support and encouragement from my group members has been incredible and I feel I have gained experience similar to that of a real world collaborative project. Compared to other solo projects, the ability to both lean on others for support and provide help to other group members was extremely beneficial.
+
+As our group worked together well, we were able to implement changes and reach development goals either on time or ahead of time, whenever we set goals. This allowed our workflow to snowball during the week especially and we could proudly boast that our CRUD functions were all working by Tuesday. This was a huge change from solo projects where I often get wrapped up in solving smaller issues or trying to tackle problems all at once, and I was able to see how crucial things like mob coding and debugging for other people are.
+
+All projects in the course so far have differed from my expectations of the concept, as some have been easier than I anticipated and some have been much harder. Even though I would say Summit is an ambitious app to have created in a week, being able to share the workload with others allowed us to be able to implement all extra features we planned for and all styling, which was an amazing feeling. Since there was so much trust within the group, we sometimes worked separately on different issues, moreso towards the end of the week, which sometimes caused git conflict issues. However these small issues here and there were the only setbacks we really had, so it was great to not have some huge blocker for multiple days of this project.
+
+Despite a few minor communication hiccups, I was pleasantly surprised at the amount we were able to achieve with just 3 developers, and would gladly work in a team this size for another project.
+
+
+
+
 
 
