@@ -22,7 +22,6 @@
                     {% if user.is_authenticated %}
                         <li><a href="{%url 'interest_list'%}">Interests</a></li>
                         <li><a href="{%url 'mygroup_index'%}">MyGroups</a></li>
-                        <li><a href="">Profile</a></li>  
                         <li><a href="{%url 'logout' %}">Log out</a></li>
                     {% else %}
                         <li><a href="{%url 'signup' %}">Sign Up</a></li>
