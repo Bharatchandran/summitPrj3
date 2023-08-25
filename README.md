@@ -68,7 +68,11 @@ Topic and Post models have a 1:M relationship
 ## Personal Reviews
 
 ### Bharat
+I thoroughly enjoyed my involvement in this collaborative group project where a strong emphasis was placed on effective structuring and task delegation. This experience proved to be immensely valuable, as it not only allowed us to optimize our workflow but also fostered a heightened sense of accountability for individual contributions.
 
+When I contemplate an idea or undertake a coding implementation on my own, there are certain perspectives and potential issues that might not come to light. However, collaborating within a group setting has enabled me to identify these challenges and utilize my time more effectively. Moreover, it has facilitated the enhancement of my initial concepts, particularly in refining specific aspects of the code.
+
+I particularly relished the synergy that emerged while collaborating with my esteemed teammates, Nick and Toby, both of whom demonstrated exceptional prowess. Our collaborative dynamic enabled us to engage in meaningful discussions about code, seamlessly share innovative concepts, and ultimately transform these ideas into tangible outcomes. The process was truly exhilarating and left me with a profound sense of accomplishment.
 
 
 ----
