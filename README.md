@@ -3,7 +3,7 @@
 
 Summit is a web application designed to allow likeminded people to discuss topics in an open forum. With the ever increasing restrictions on platforms like Reddit and Tumblr, we aimed to create something where people knew their opinions are heard and valued.
 
-**[Visit Summit here!](https://summitdb-84480e3e02b3.herokuapp.com/)**
+**[Visit Summit here!](https://summitworking-337be49da67f.herokuapp.com/)**
 
 ## Contents
 - [Features](#features)
